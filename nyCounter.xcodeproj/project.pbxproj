@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		0EDCC1FB2CAEF97400D71CCD /* nybits in Frameworks */ = {isa = PBXBuildFile; productRef = 0EDCC1FA2CAEF97400D71CCD /* nybits */; };
+		0EDCC1FD2CAEF97400D71CCD /* nybundle in Frameworks */ = {isa = PBXBuildFile; productRef = 0EDCC1FC2CAEF97400D71CCD /* nybundle */; };
+		0EDCC1FF2CAEF97400D71CCD /* nydefaults in Frameworks */ = {isa = PBXBuildFile; productRef = 0EDCC1FE2CAEF97400D71CCD /* nydefaults */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		0EDCC1BE2CAEE6AC00D71CCD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,18 +30,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0EDCC1A92CAEE6AA00D71CCD /* counter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = counter.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0EDCC1BD2CAEE6AC00D71CCD /* counterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = counterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0EDCC1C72CAEE6AC00D71CCD /* counterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = counterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0EDCC1A92CAEE6AA00D71CCD /* nyCounter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nyCounter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0EDCC1BD2CAEE6AC00D71CCD /* nyCounterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nyCounterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0EDCC1C72CAEE6AC00D71CCD /* nyCounterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nyCounterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		0EDCC1CF2CAEE6AC00D71CCD /* Exceptions for "counter" folder in "counter" target */ = {
+		0EDCC1F62CAEF1F600D71CCD /* Exceptions for "counter" folder in "nyCounter" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				Misc/Info.plist,
 			);
-			target = 0EDCC1A82CAEE6AA00D71CCD /* counter */;
+			target = 0EDCC1A82CAEE6AA00D71CCD /* nyCounter */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -43,7 +49,7 @@
 		0EDCC1AB2CAEE6AA00D71CCD /* counter */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				0EDCC1CF2CAEE6AC00D71CCD /* Exceptions for "counter" folder in "counter" target */,
+				0EDCC1F62CAEF1F600D71CCD /* Exceptions for "counter" folder in "nyCounter" target */,
 			);
 			path = counter;
 			sourceTree = "<group>";
@@ -65,6 +71,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EDCC1FF2CAEF97400D71CCD /* nydefaults in Frameworks */,
+				0EDCC1FB2CAEF97400D71CCD /* nybits in Frameworks */,
+				0EDCC1FD2CAEF97400D71CCD /* nybundle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,9 +107,9 @@
 		0EDCC1AA2CAEE6AA00D71CCD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0EDCC1A92CAEE6AA00D71CCD /* counter.app */,
-				0EDCC1BD2CAEE6AC00D71CCD /* counterTests.xctest */,
-				0EDCC1C72CAEE6AC00D71CCD /* counterUITests.xctest */,
+				0EDCC1A92CAEE6AA00D71CCD /* nyCounter.app */,
+				0EDCC1BD2CAEE6AC00D71CCD /* nyCounterTests.xctest */,
+				0EDCC1C72CAEE6AC00D71CCD /* nyCounterUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -108,9 +117,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0EDCC1A82CAEE6AA00D71CCD /* counter */ = {
+		0EDCC1A82CAEE6AA00D71CCD /* nyCounter */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0EDCC1D02CAEE6AC00D71CCD /* Build configuration list for PBXNativeTarget "counter" */;
+			buildConfigurationList = 0EDCC1D02CAEE6AC00D71CCD /* Build configuration list for PBXNativeTarget "nyCounter" */;
 			buildPhases = (
 				0EDCC1A52CAEE6AA00D71CCD /* Sources */,
 				0EDCC1A62CAEE6AA00D71CCD /* Frameworks */,
@@ -123,16 +132,19 @@
 			fileSystemSynchronizedGroups = (
 				0EDCC1AB2CAEE6AA00D71CCD /* counter */,
 			);
-			name = counter;
+			name = nyCounter;
 			packageProductDependencies = (
+				0EDCC1FA2CAEF97400D71CCD /* nybits */,
+				0EDCC1FC2CAEF97400D71CCD /* nybundle */,
+				0EDCC1FE2CAEF97400D71CCD /* nydefaults */,
 			);
 			productName = counter;
-			productReference = 0EDCC1A92CAEE6AA00D71CCD /* counter.app */;
+			productReference = 0EDCC1A92CAEE6AA00D71CCD /* nyCounter.app */;
 			productType = "com.apple.product-type.application";
 		};
-		0EDCC1BC2CAEE6AC00D71CCD /* counterTests */ = {
+		0EDCC1BC2CAEE6AC00D71CCD /* nyCounterTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0EDCC1D52CAEE6AC00D71CCD /* Build configuration list for PBXNativeTarget "counterTests" */;
+			buildConfigurationList = 0EDCC1D52CAEE6AC00D71CCD /* Build configuration list for PBXNativeTarget "nyCounterTests" */;
 			buildPhases = (
 				0EDCC1B92CAEE6AC00D71CCD /* Sources */,
 				0EDCC1BA2CAEE6AC00D71CCD /* Frameworks */,
@@ -146,16 +158,16 @@
 			fileSystemSynchronizedGroups = (
 				0EDCC1C02CAEE6AC00D71CCD /* counterTests */,
 			);
-			name = counterTests;
+			name = nyCounterTests;
 			packageProductDependencies = (
 			);
 			productName = counterTests;
-			productReference = 0EDCC1BD2CAEE6AC00D71CCD /* counterTests.xctest */;
+			productReference = 0EDCC1BD2CAEE6AC00D71CCD /* nyCounterTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		0EDCC1C62CAEE6AC00D71CCD /* counterUITests */ = {
+		0EDCC1C62CAEE6AC00D71CCD /* nyCounterUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0EDCC1D82CAEE6AC00D71CCD /* Build configuration list for PBXNativeTarget "counterUITests" */;
+			buildConfigurationList = 0EDCC1D82CAEE6AC00D71CCD /* Build configuration list for PBXNativeTarget "nyCounterUITests" */;
 			buildPhases = (
 				0EDCC1C32CAEE6AC00D71CCD /* Sources */,
 				0EDCC1C42CAEE6AC00D71CCD /* Frameworks */,
@@ -169,11 +181,11 @@
 			fileSystemSynchronizedGroups = (
 				0EDCC1CA2CAEE6AC00D71CCD /* counterUITests */,
 			);
-			name = counterUITests;
+			name = nyCounterUITests;
 			packageProductDependencies = (
 			);
 			productName = counterUITests;
-			productReference = 0EDCC1C72CAEE6AC00D71CCD /* counterUITests.xctest */;
+			productReference = 0EDCC1C72CAEE6AC00D71CCD /* nyCounterUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -199,7 +211,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0EDCC1A42CAEE6AA00D71CCD /* Build configuration list for PBXProject "counter" */;
+			buildConfigurationList = 0EDCC1A42CAEE6AA00D71CCD /* Build configuration list for PBXProject "nyCounter" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -208,14 +220,17 @@
 			);
 			mainGroup = 0EDCC1A02CAEE6AA00D71CCD;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				0EDCC1F92CAEF97400D71CCD /* XCRemoteSwiftPackageReference "nybits" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0EDCC1AA2CAEE6AA00D71CCD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0EDCC1A82CAEE6AA00D71CCD /* counter */,
-				0EDCC1BC2CAEE6AC00D71CCD /* counterTests */,
-				0EDCC1C62CAEE6AC00D71CCD /* counterUITests */,
+				0EDCC1A82CAEE6AA00D71CCD /* nyCounter */,
+				0EDCC1BC2CAEE6AC00D71CCD /* nyCounterTests */,
+				0EDCC1C62CAEE6AC00D71CCD /* nyCounterUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -271,12 +286,12 @@
 /* Begin PBXTargetDependency section */
 		0EDCC1BF2CAEE6AC00D71CCD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0EDCC1A82CAEE6AA00D71CCD /* counter */;
+			target = 0EDCC1A82CAEE6AA00D71CCD /* nyCounter */;
 			targetProxy = 0EDCC1BE2CAEE6AC00D71CCD /* PBXContainerItemProxy */;
 		};
 		0EDCC1C92CAEE6AC00D71CCD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0EDCC1A82CAEE6AA00D71CCD /* counter */;
+			target = 0EDCC1A82CAEE6AA00D71CCD /* nyCounter */;
 			targetProxy = 0EDCC1C82CAEE6AC00D71CCD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -287,25 +302,29 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = counter/counter.entitlements;
+				CODE_SIGN_ENTITLEMENTS = counter/Misc/counter.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"counter/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"counter/Misc/Preview Content\"";
 				DEVELOPMENT_TEAM = EU74F4WL9R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = counter/Info.plist;
+				INFOPLIST_FILE = counter/Misc/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = nyCounter;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ny.counter;
+				PRODUCT_BUNDLE_IDENTIFIER = ny.count;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -318,25 +337,29 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = counter/counter.entitlements;
+				CODE_SIGN_ENTITLEMENTS = counter/Misc/counter.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"counter/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"counter/Misc/Preview Content\"";
 				DEVELOPMENT_TEAM = EU74F4WL9R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = counter/Info.plist;
+				INFOPLIST_FILE = counter/Misc/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = nyCounter;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ny.counter;
+				PRODUCT_BUNDLE_IDENTIFIER = ny.count;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -478,7 +501,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/counter.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/counter";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/nyCounter.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/nyCounter";
 			};
 			name = Debug;
 		};
@@ -497,7 +520,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/counter.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/counter";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/nyCounter.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/nyCounter";
 			};
 			name = Release;
 		};
@@ -538,7 +561,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0EDCC1A42CAEE6AA00D71CCD /* Build configuration list for PBXProject "counter" */ = {
+		0EDCC1A42CAEE6AA00D71CCD /* Build configuration list for PBXProject "nyCounter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0EDCC1D32CAEE6AC00D71CCD /* Debug */,
@@ -547,7 +570,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0EDCC1D02CAEE6AC00D71CCD /* Build configuration list for PBXNativeTarget "counter" */ = {
+		0EDCC1D02CAEE6AC00D71CCD /* Build configuration list for PBXNativeTarget "nyCounter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0EDCC1D12CAEE6AC00D71CCD /* Debug */,
@@ -556,7 +579,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0EDCC1D52CAEE6AC00D71CCD /* Build configuration list for PBXNativeTarget "counterTests" */ = {
+		0EDCC1D52CAEE6AC00D71CCD /* Build configuration list for PBXNativeTarget "nyCounterTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0EDCC1D62CAEE6AC00D71CCD /* Debug */,
@@ -565,7 +588,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0EDCC1D82CAEE6AC00D71CCD /* Build configuration list for PBXNativeTarget "counterUITests" */ = {
+		0EDCC1D82CAEE6AC00D71CCD /* Build configuration list for PBXNativeTarget "nyCounterUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0EDCC1D92CAEE6AC00D71CCD /* Debug */,
@@ -575,6 +598,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0EDCC1F92CAEF97400D71CCD /* XCRemoteSwiftPackageReference "nybits" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nythepegasus/nybits.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0EDCC1FA2CAEF97400D71CCD /* nybits */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0EDCC1F92CAEF97400D71CCD /* XCRemoteSwiftPackageReference "nybits" */;
+			productName = nybits;
+		};
+		0EDCC1FC2CAEF97400D71CCD /* nybundle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0EDCC1F92CAEF97400D71CCD /* XCRemoteSwiftPackageReference "nybits" */;
+			productName = nybundle;
+		};
+		0EDCC1FE2CAEF97400D71CCD /* nydefaults */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0EDCC1F92CAEF97400D71CCD /* XCRemoteSwiftPackageReference "nybits" */;
+			productName = nydefaults;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0EDCC1A12CAEE6AA00D71CCD /* Project object */;
 }

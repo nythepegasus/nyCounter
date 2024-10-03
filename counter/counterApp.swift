@@ -10,23 +10,27 @@ import SwiftData
 
 @main
 struct counterApp: App {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
-
+    var sharedModelContainer: ModelContainer = container()
+    
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CounterListView()
         }
         .modelContainer(sharedModelContainer)
+    }
+}
+
+func container() -> ModelContainer {
+    let schema = Schema([
+        NYCounter.self,
+        NYCountItem.self,
+    ])
+    let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+
+    do {
+        return try ModelContainer(for: schema, configurations: [modelConfiguration])
+    } catch {
+        fatalError("Could not create ModelContainer: \(error)")
     }
 }

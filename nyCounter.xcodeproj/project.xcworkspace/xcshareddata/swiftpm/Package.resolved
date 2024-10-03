@@ -1,0 +1,15 @@
+{
+  "originHash" : "cc427d11fa46dab611d64e370a4e49f3c8e59049d8808cead5946e29052a24f4",
+  "pins" : [
+    {
+      "identity" : "nybits",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nythepegasus/nybits.git",
+      "state" : {
+        "revision" : "c74fa616dd3bdd746400b8f46200464428e6e6d4",
+        "version" : "0.0.5"
+      }
+    }
+  ],
+  "version" : 3
+}
