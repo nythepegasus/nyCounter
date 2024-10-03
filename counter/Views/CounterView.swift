@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct NYCounterView: View {
+    @Environment(\.modelContext) private var modelContext
     @State var counter: NYCounter
     @Binding var editMode: EditMode
     var onDelete: () -> Void = {}
@@ -33,6 +34,7 @@ struct NYCounterView: View {
                         counter.value -= counter.step
                         let item = NYCountItem(counter: counter, value: counter.value)
                         counter.items?.append(item)
+                        modelContext.insert(item)
                     }, label: {
                         Image(systemName: "minus.square")
                     })
@@ -41,6 +43,7 @@ struct NYCounterView: View {
                         counter.value += counter.step
                         let item = NYCountItem(counter: counter, value: counter.value)
                         counter.items?.append(item)
+                        modelContext.insert(item)
                     }, label: {
                         Image(systemName: "plus.square")
                     })

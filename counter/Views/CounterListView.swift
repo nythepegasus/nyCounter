@@ -70,7 +70,7 @@ struct CounterListView: View {
         withAnimation {
             let newCounter = NYCounter(value: 0, title: "Counter", step: 1)
             let newCounterItem = NYCountItem(counter: newCounter, value: 0)
-            newCounter.items?.append(newCounterItem)
+//            newCounter.items?.append(newCounterItem)
             modelContext.insert(newCounter)
             modelContext.insert(newCounterItem)
         }
