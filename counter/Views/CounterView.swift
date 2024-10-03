@@ -77,5 +77,9 @@ struct NYCounterView: View {
 }
 
 #Preview {
+    #if os(iOS)
+    NYCounterView(counter: NYCounter(title: "Woah!"), editMode: .constant(.inactive))
+    #else
     NYCounterView(counter: NYCounter(title: "Woah!"), editMode: .constant(false))
+    #endif
 }
