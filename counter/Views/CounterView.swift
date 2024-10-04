@@ -87,7 +87,6 @@ struct NYCounterView: View {
 #if os(iOS)
                 if editMode == .active {
                     TextField("Counter Title", text: $counter.title)
-                        .keyboardType(.numberPad)
                         .background(Color.accentColor.opacity(0.6))
                 } else {
                     Text(counter.title)
@@ -158,6 +157,15 @@ struct NYCounterView: View {
             }
         }
         .frame(width: 120)
+        .onChange(of: counter.goal) {
+            try? modelContext.save()
+        }
+        .onChange(of: counter.title) {
+            try? modelContext.save()
+        }
+        .onChange(of: counter.step) {
+            try? modelContext.save()
+        }
     }
 }
 

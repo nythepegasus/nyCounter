@@ -21,13 +21,15 @@ struct CounterListView: View {
 #endif
     @State var refresh: Bool = false
     
-    func bColor(_ c: NYCounter) -> Color {
-        if let goal = c.goal {
-            if goal <= c.value {
-                return Color.green.opacity(0.1)
+    func bColor(_ c: NYCounter? = nil) -> Color {
+        if let c {
+            if let goal = c.goal {
+                if goal <= c.value {
+                    return Color.green.opacity(0.35)
+                }
             }
         }
-        return Color.gray.opacity(0.1)
+        return Color.gray.opacity(0.2)
     }
     
     var body: some View {
@@ -73,6 +75,7 @@ struct CounterListView: View {
                                 }
                                 .padding()
                                 .background(bColor(counter))
+                                .cornerRadius(15)
                         }
                         .onDelete(perform: deleteCounters)
                         HStack {
@@ -83,6 +86,10 @@ struct CounterListView: View {
                                     Text("Add Counter")
                                 }
                                 .padding()
+#if os(iOS)
+                                .background(bColor())
+                                .cornerRadius(15)
+#endif
                             }
                         }
                     }
@@ -97,7 +104,6 @@ struct CounterListView: View {
         withAnimation {
             let newCounter = NYCounter(value: 0, title: "Counter", step: 1)
             let newCounterItem = NYCountItem(counter: newCounter, value: 0)
-//            newCounter.items?.append(newCounterItem)
             modelContext.insert(newCounter)
             modelContext.insert(newCounterItem)
             try? modelContext.save()
