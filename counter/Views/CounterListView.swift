@@ -21,6 +21,15 @@ struct CounterListView: View {
 #endif
     @State var refresh: Bool = false
     
+    func bColor(_ c: NYCounter) -> Color {
+        if let goal = c.goal {
+            if goal <= c.value {
+                return Color.green.opacity(0.1)
+            }
+        }
+        return Color.gray.opacity(0.1)
+    }
+    
     var body: some View {
         VStack {
             #if os(iOS)
@@ -63,7 +72,7 @@ struct CounterListView: View {
                                     print("tapped \(counter.id)")
                                 }
                                 .padding()
-                                .background(Color.gray.opacity(0.1))
+                                .background(bColor(counter))
                         }
                         .onDelete(perform: deleteCounters)
                         HStack {

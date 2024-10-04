@@ -27,7 +27,11 @@ struct NYCounterView: View {
             }
             Divider()
             VStack(alignment: .center) {
+                TextField("Goal", value: $counter.goal, format: .number)
+                    .keyboardType(.numberPad)
+                    .background(Color.accentColor.opacity(0.6))
                 TextField("Step Count", value: $counter.step, format: .number)
+                    .keyboardType(.numberPad)
                     .background(Color.accentColor.opacity(0.6))
                 HStack {
                     Button(action: {
@@ -71,6 +75,7 @@ struct NYCounterView: View {
 #if os(iOS)
                 if editMode == .active {
                     TextField("Counter Title", text: $counter.title)
+                        .keyboardType(.numberPad)
                         .background(Color.accentColor.opacity(0.6))
                 } else {
                     Text(counter.title)
@@ -88,6 +93,7 @@ struct NYCounterView: View {
 #if os(iOS)
                         if editMode == .active {
                             TextField("Value", value: $counter.value, format: .number)
+                                .keyboardType(.numberPad)
                                 .background(Color.accentColor.opacity(0.6))
                         } else {
                             Text("\(counter.value)")

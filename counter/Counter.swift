@@ -14,13 +14,15 @@ import SwiftData
 class NYCounter: Identifiable {
     var id: UUID = UUID()
     var value: Int = 0
+    var goal: Int?
     var title: String = "Counter"
     var step: Int = 1
     var items: [NYCountItem]? = []
     
-    init(id: UUID = UUID(), value: Int = 0, title: String = "Counter", step: Int = 1, items: [NYCountItem]? = []) {
+    init(id: UUID = UUID(), value: Int = 0, goal: Int? = nil, title: String = "Counter", step: Int = 1, items: [NYCountItem]? = []) {
         self.id = id
         self.value = value
+        self.goal = goal
         self.title = title
         self.step = step
         self.items = items
