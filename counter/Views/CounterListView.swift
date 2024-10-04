@@ -12,6 +12,7 @@ import SwiftData
 struct CounterListView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \NYCounter.id) private var counters: [NYCounter]
+    @Query private var allCountItems: [NYCountItem]
     @State var curCounters: [NYCounter] = []
 #if os(iOS)
     @State var mode: EditMode = .inactive
@@ -80,6 +81,7 @@ struct CounterListView: View {
                 }
             }
         }
+        .onAppear(perform: cleanUpOrphanedCountItems)
     }
     
     func addCounter() {
@@ -95,8 +97,32 @@ struct CounterListView: View {
     private func deleteCounters(offsets: IndexSet) {
         withAnimation {
             for index in offsets {
-                modelContext.delete(counters[index])
+                let counter = counters[index]
+                
+                // Fetch and delete associated NYCountItems
+                if let items = counter.items {
+                    for item in items {
+                        modelContext.delete(item)
+                    }
+                }
+                modelContext.delete(counter)
             }
+        }
+    }
+    
+    func cleanUpOrphanedCountItems() {
+        for item in allCountItems {
+            // Check if there's no associated NYCounter
+            if item.counter == nil {
+                modelContext.delete(item)
+            }
+        }
+        
+        do {
+            // Save the context to apply the deletions
+            try modelContext.save()
+        } catch {
+            print("Failed to clean up orphaned NYCountItems: \(error.localizedDescription)")
         }
     }
 }
