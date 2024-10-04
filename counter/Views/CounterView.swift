@@ -27,24 +27,28 @@ struct NYCounterView: View {
             }
             Divider()
             VStack(alignment: .center) {
-                Text("Step Count:")
                 TextField("Step Count", value: $counter.step, format: .number)
+                    .background(Color.accentColor.opacity(0.6))
                 HStack {
                     Button(action: {
                         counter.step -= 1
                     }, label: {
-                        Image(systemName: "minus.square")
+                        Image(systemName: "minus.circle")
+#if os(iOS)
                             .resizable()
                             .frame(width: 30, height: 30)
+#endif
                     })
                     Spacer()
                         .frame(width: 45)
                     Button(action: {
                         counter.step += 1
                     }, label: {
-                        Image(systemName: "plus.square")
+                        Image(systemName: "plus.circle")
+#if os(iOS)
                             .resizable()
                             .scaledToFit()
+#endif
                     })
                 }
             }
@@ -66,15 +70,15 @@ struct NYCounterView: View {
             VStack {
 #if os(iOS)
                 if editMode == .active {
-                    Text("Title:")
                     TextField("Counter Title", text: $counter.title)
+                        .background(Color.accentColor.opacity(0.6))
                 } else {
                     Text(counter.title)
                 }
 #else
                 if editMode {
-                    Text("Title:")
                     TextField("Counter Title", text: $counter.title)
+                        .background(Color.accentColor.opacity(0.6))
                 } else {
                     Text(counter.title)
                 }
@@ -83,15 +87,16 @@ struct NYCounterView: View {
                     HStack {
 #if os(iOS)
                         if editMode == .active {
-                            Text("Value:")
                             TextField("Value", value: $counter.value, format: .number)
+                                .background(Color.accentColor.opacity(0.6))
                         } else {
                             Text("\(counter.value)")
                         }
 #else
                         if editMode {
-                            Text("Value:")
                             TextField("Value", value: $counter.value, format: .number)
+                                .background(Color.accentColor.opacity(0.6))
+
                         } else {
                             Text("\(counter.value)")
                         }
@@ -105,8 +110,10 @@ struct NYCounterView: View {
                             modelContext.insert(item)
                         }, label: {
                             Image(systemName: "minus.square")
+#if os(iOS)
                                 .resizable()
                                 .frame(width: 30, height: 30)
+#endif
                         })
                         Spacer()
                             .frame(width: 45)
@@ -117,8 +124,10 @@ struct NYCounterView: View {
                             modelContext.insert(item)
                         }, label: {
                             Image(systemName: "plus.square")
+#if os(iOS)
                                 .resizable()
                                 .scaledToFit()
+#endif
                         })
                     }
                 }
