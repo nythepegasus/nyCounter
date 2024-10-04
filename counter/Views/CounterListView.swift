@@ -11,7 +11,7 @@ import SwiftData
 
 struct CounterListView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: \NYCounter.title) private var counters: [NYCounter]
+    @Query(sort: \NYCounter.id) private var counters: [NYCounter]
     @State var curCounters: [NYCounter] = []
 #if os(iOS)
     @State var mode: EditMode = .inactive

@@ -17,62 +17,114 @@ struct NYCounterView: View {
     #endif
     var onDelete: () -> Void = {}
     
-    var body: some View {
-        VStack {
-            #if os(iOS)
-            if editMode == .active {
-                HStack {
-                    Spacer()
-                    Button(action: onDelete, label: {
-                        Image(systemName: "trash")
-                    })
-                }
+    var stepEditor: some View {
+        VStack(alignment: .center) {
+            HStack {
+                Spacer()
+                Button(action: onDelete, label: {
+                    Image(systemName: "trash")
+                })
             }
-            #else
-            if editMode {
-                HStack {
-                    Spacer()
-                    Button(action: onDelete, label: {
-                        Image(systemName: "trash")
-                    })
-                }
-            }
-#endif
-            VStack {
-                #if os(iOS)
-                if editMode == .active {
-                    TextField("Counter Title", text: $counter.title)
-                } else {
-                    Text(counter.title)
-                }
-                #else
-                if editMode {
-                    TextField("Counter Title", text: $counter.title)
-                } else {
-                    Text(counter.title)
-                }
-                #endif
+            Divider()
+            VStack(alignment: .center) {
+                Text("Step Count:")
+                TextField("Step Count", value: $counter.step, format: .number)
                 HStack {
                     Button(action: {
-                        counter.value -= counter.step
-                        let item = NYCountItem(counter: counter, value: counter.value)
-                        counter.items?.append(item)
-                        modelContext.insert(item)
+                        counter.step -= 1
                     }, label: {
                         Image(systemName: "minus.square")
+                            .resizable()
+                            .frame(width: 30, height: 30)
                     })
-                    Text("\(counter.value)")
+                    Spacer()
+                        .frame(width: 45)
                     Button(action: {
-                        counter.value += counter.step
-                        let item = NYCountItem(counter: counter, value: counter.value)
-                        counter.items?.append(item)
-                        modelContext.insert(item)
+                        counter.step += 1
                     }, label: {
                         Image(systemName: "plus.square")
+                            .resizable()
+                            .scaledToFit()
                     })
                 }
             }
         }
+        .frame(width: 120)
+    }
+    
+    var body: some View {
+        VStack(alignment: .center) {
+            #if os(iOS)
+            if editMode == .active {
+                stepEditor
+            }
+            #else
+            if editMode {
+                stepEditor
+            }
+#endif
+            VStack {
+#if os(iOS)
+                if editMode == .active {
+                    Text("Title:")
+                    TextField("Counter Title", text: $counter.title)
+                } else {
+                    Text(counter.title)
+                }
+#else
+                if editMode {
+                    Text("Title:")
+                    TextField("Counter Title", text: $counter.title)
+                } else {
+                    Text(counter.title)
+                }
+#endif
+                VStack {
+                    HStack {
+#if os(iOS)
+                        if editMode == .active {
+                            Text("Value:")
+                            TextField("Value", value: $counter.value, format: .number)
+                        } else {
+                            Text("\(counter.value)")
+                        }
+#else
+                        if editMode {
+                            Text("Value:")
+                            TextField("Value", value: $counter.value, format: .number)
+                        } else {
+                            Text("\(counter.value)")
+                        }
+#endif
+                    }
+                    HStack {
+                        Button(action: {
+                            counter.value -= counter.step
+                            let item = NYCountItem(counter: counter, value: counter.value)
+                            counter.items?.append(item)
+                            modelContext.insert(item)
+                        }, label: {
+                            Image(systemName: "minus.square")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                        })
+                        Spacer()
+                            .frame(width: 45)
+                        Button(action: {
+                            counter.value += counter.step
+                            let item = NYCountItem(counter: counter, value: counter.value)
+                            counter.items?.append(item)
+                            modelContext.insert(item)
+                        }, label: {
+                            Image(systemName: "plus.square")
+                                .resizable()
+                                .scaledToFit()
+                        })
+                    }
+                }
+            }
+        }
+        .frame(width: 120)
     }
 }
 

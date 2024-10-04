@@ -9,7 +9,6 @@
 	<key>com.apple.developer.icloud-container-identifiers</key>
 	<array>
 		<string>iCloud.ny.apps</string>
-		<string>iCloud.ny.count</string>
 	</array>
 	<key>com.apple.developer.icloud-services</key>
 	<array>
@@ -18,7 +17,6 @@
 	</array>
 	<key>com.apple.developer.ubiquity-container-identifiers</key>
 	<array>
-		<string>iCloud.ny.count</string>
 		<string>iCloud.ny.apps</string>
 	</array>
 	<key>com.apple.developer.ubiquity-kvstore-identifier</key>
