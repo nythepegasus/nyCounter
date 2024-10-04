@@ -100,6 +100,7 @@ struct CounterListView: View {
 //            newCounter.items?.append(newCounterItem)
             modelContext.insert(newCounter)
             modelContext.insert(newCounterItem)
+            try? modelContext.save()
         }
     }
     
@@ -115,6 +116,7 @@ struct CounterListView: View {
                     }
                 }
                 modelContext.delete(counter)
+                try? modelContext.save()
             }
         }
     }

@@ -21,7 +21,11 @@ struct NYCounterView: View {
         VStack(alignment: .center) {
             HStack {
                 Spacer()
-                Button(action: onDelete, label: {
+                Button(action: {
+                    withAnimation {
+                        onDelete()
+                    }
+                }, label: {
                     Image(systemName: "trash")
                 })
             }
@@ -39,7 +43,9 @@ struct NYCounterView: View {
                     .background(Color.accentColor.opacity(0.6))
                 HStack {
                     Button(action: {
-                        counter.step -= 1
+                        withAnimation {
+                            counter.step -= 1
+                        }
                     }, label: {
                         Image(systemName: "minus.circle")
 #if os(iOS)
@@ -50,7 +56,9 @@ struct NYCounterView: View {
                     Spacer()
                         .frame(width: 45)
                     Button(action: {
-                        counter.step += 1
+                        withAnimation {
+                            counter.step += 1
+                        }
                     }, label: {
                         Image(systemName: "plus.circle")
 #if os(iOS)
@@ -114,10 +122,13 @@ struct NYCounterView: View {
                     }
                     HStack {
                         Button(action: {
-                            counter.value -= counter.step
-                            let item = NYCountItem(counter: counter, value: counter.value)
-                            counter.items?.append(item)
-                            modelContext.insert(item)
+                            withAnimation {
+                                counter.value -= counter.step
+                                let item = NYCountItem(counter: counter, value: counter.value)
+                                counter.items?.append(item)
+                                modelContext.insert(item)
+                                try? modelContext.save()
+                            }
                         }, label: {
                             Image(systemName: "minus.square")
 #if os(iOS)
@@ -128,10 +139,13 @@ struct NYCounterView: View {
                         Spacer()
                             .frame(width: 45)
                         Button(action: {
-                            counter.value += counter.step
-                            let item = NYCountItem(counter: counter, value: counter.value)
-                            counter.items?.append(item)
-                            modelContext.insert(item)
+                            withAnimation {
+                                counter.value += counter.step
+                                let item = NYCountItem(counter: counter, value: counter.value)
+                                counter.items?.append(item)
+                                modelContext.insert(item)
+                                try? modelContext.save()
+                            }
                         }, label: {
                             Image(systemName: "plus.square")
 #if os(iOS)
