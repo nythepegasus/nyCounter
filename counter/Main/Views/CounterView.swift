@@ -5,6 +5,7 @@
 //  Created by ny on 10/3/24.
 //
 
+import nybits
 import SwiftUI
 
 struct NYCounterView: View {
@@ -45,7 +46,7 @@ struct NYCounterView: View {
                 HStack {
                     Button(action: {
                         withAnimation {
-                            counter.step -= 1
+                            counter.step = counter.step.subtractWithoutOverflow(1)
                             modelContext.insertSave(counter)
                         }
                     }, label: {
@@ -59,7 +60,7 @@ struct NYCounterView: View {
                         .frame(width: 45)
                     Button(action: {
                         withAnimation {
-                            counter.step += 1
+                            counter.step = counter.step.addWithoutOverflow(1)
                             modelContext.insertSave(counter)
                         }
                     }, label: {
@@ -125,7 +126,7 @@ struct NYCounterView: View {
                     HStack {
                         Button(action: {
                             withAnimation {
-                                counter.value -= counter.step
+                                counter.value = counter.value.subtractWithoutOverflow(counter.step)
                                 insertNewItem(counter)
                             }
                         }, label: {
@@ -139,7 +140,7 @@ struct NYCounterView: View {
                             .frame(width: 45)
                         Button(action: {
                             withAnimation {
-                                counter.value += counter.step
+                                counter.value = counter.value.addWithoutOverflow(counter.step)
                                 insertNewItem(counter)
                             }
                         }, label: {

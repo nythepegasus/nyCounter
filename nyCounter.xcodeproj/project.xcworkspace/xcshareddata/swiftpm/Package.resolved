@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/nythepegasus/nybits.git",
       "state" : {
-        "revision" : "c74fa616dd3bdd746400b8f46200464428e6e6d4",
-        "version" : "0.0.5"
+        "branch" : "main",
+        "revision" : "04b74dcf6d39e824a2b4333d32cf4c3a01a5791c"
       }
     }
   ],
