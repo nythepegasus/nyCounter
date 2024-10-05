@@ -43,3 +43,10 @@ class NYCountItem: Identifiable {
         self.time = time
     }
 }
+
+extension ModelContext {
+    func insertSave(_ model: any PersistentModel) {
+        insert(model)
+        try? save()
+    }
+}

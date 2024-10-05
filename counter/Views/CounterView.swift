@@ -24,6 +24,7 @@ struct NYCounterView: View {
                 Button(action: {
                     withAnimation {
                         onDelete()
+                        try? modelContext.save()
                     }
                 }, label: {
                     Image(systemName: "trash")
@@ -45,6 +46,7 @@ struct NYCounterView: View {
                     Button(action: {
                         withAnimation {
                             counter.step -= 1
+                            modelContext.insertSave(counter)
                         }
                     }, label: {
                         Image(systemName: "minus.circle")
@@ -58,6 +60,7 @@ struct NYCounterView: View {
                     Button(action: {
                         withAnimation {
                             counter.step += 1
+                            modelContext.insertSave(counter)
                         }
                     }, label: {
                         Image(systemName: "plus.circle")
@@ -125,8 +128,8 @@ struct NYCounterView: View {
                                 counter.value -= counter.step
                                 let item = NYCountItem(counter: counter, value: counter.value)
                                 counter.items?.append(item)
-                                modelContext.insert(item)
-                                try? modelContext.save()
+                                modelContext.insertSave(item)
+                                modelContext.insertSave(counter)
                             }
                         }, label: {
                             Image(systemName: "minus.square")
@@ -142,8 +145,8 @@ struct NYCounterView: View {
                                 counter.value += counter.step
                                 let item = NYCountItem(counter: counter, value: counter.value)
                                 counter.items?.append(item)
-                                modelContext.insert(item)
-                                try? modelContext.save()
+                                modelContext.insertSave(item)
+                                modelContext.insertSave(counter)
                             }
                         }, label: {
                             Image(systemName: "plus.square")
@@ -158,13 +161,13 @@ struct NYCounterView: View {
         }
         .frame(width: 120)
         .onChange(of: counter.goal) {
-            try? modelContext.save()
+            modelContext.insertSave(counter)
         }
         .onChange(of: counter.title) {
-            try? modelContext.save()
+            modelContext.insertSave(counter)
         }
         .onChange(of: counter.step) {
-            try? modelContext.save()
+            modelContext.insertSave(counter)
         }
     }
 }
