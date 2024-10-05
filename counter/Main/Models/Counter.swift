@@ -44,9 +44,27 @@ class NYCountItem: Identifiable {
     }
 }
 
+extension PersistentModel {
+    func insert(_ context: ModelContext) {
+        context.insert(self)
+    }
+    
+    func insertSave(_ context: ModelContext) {
+        context.insertSave(self)
+    }
+    
+    func delete(_ context: ModelContext) {
+        context.delete(self)
+    }
+}
+
 extension ModelContext {
-    func insertSave(_ model: any PersistentModel) {
+    func insertSave<T>(_ model: T) where T: PersistentModel {
         insert(model)
-        try? save()
+        do {
+            try save()
+        } catch {
+            print("Error saving model: \(error.localizedDescription)")
+        }
     }
 }

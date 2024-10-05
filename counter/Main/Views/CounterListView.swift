@@ -103,10 +103,8 @@ struct CounterListView: View {
     func addCounter() {
         withAnimation {
             let newCounter = NYCounter(value: 0, title: "Counter", step: 1)
-            let newCounterItem = NYCountItem(counter: newCounter, value: 0)
-            modelContext.insert(newCounter)
-            modelContext.insert(newCounterItem)
-            try? modelContext.save()
+            NYCountItem(counter: newCounter, value: 0).insertSave(modelContext)
+            newCounter.insertSave(modelContext)
         }
     }
     
@@ -115,28 +113,23 @@ struct CounterListView: View {
             for index in offsets {
                 let counter = counters[index]
                 
-                // Fetch and delete associated NYCountItems
                 if let items = counter.items {
-                    for item in items {
-                        modelContext.delete(item)
-                    }
+                    items.forEach { modelContext.delete($0) }
                 }
                 modelContext.delete(counter)
-                try? modelContext.save()
             }
         }
+        try? modelContext.save()
     }
     
     func cleanUpOrphanedCountItems() {
         for item in allCountItems {
-            // Check if there's no associated NYCounter
             if item.counter == nil {
                 modelContext.delete(item)
             }
         }
         
         do {
-            // Save the context to apply the deletions
             try modelContext.save()
         } catch {
             print("Failed to clean up orphaned NYCountItems: \(error.localizedDescription)")

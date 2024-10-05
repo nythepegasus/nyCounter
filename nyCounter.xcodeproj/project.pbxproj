@@ -36,10 +36,28 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		0E562C0B2CB1A7AD00F6BF5A /* Exceptions for "counter" folder in "nyCounterTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Misc/Tests/counterTests/counterTests.swift,
+			);
+			target = 0EDCC1BC2CAEE6AC00D71CCD /* nyCounterTests */;
+		};
+		0E562C0C2CB1A7AD00F6BF5A /* Exceptions for "counter" folder in "nyCounterUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Misc/Tests/counterUITests/counterUITests.swift,
+				Misc/Tests/counterUITests/counterUITestsLaunchTests.swift,
+			);
+			target = 0EDCC1C62CAEE6AC00D71CCD /* nyCounterUITests */;
+		};
 		0EDCC1F62CAEF1F600D71CCD /* Exceptions for "counter" folder in "nyCounter" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Misc/Info.plist,
+				Misc/Tests/counterTests/counterTests.swift,
+				Misc/Tests/counterUITests/counterUITests.swift,
+				Misc/Tests/counterUITests/counterUITestsLaunchTests.swift,
 			);
 			target = 0EDCC1A82CAEE6AA00D71CCD /* nyCounter */;
 		};
@@ -50,18 +68,10 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				0EDCC1F62CAEF1F600D71CCD /* Exceptions for "counter" folder in "nyCounter" target */,
+				0E562C0B2CB1A7AD00F6BF5A /* Exceptions for "counter" folder in "nyCounterTests" target */,
+				0E562C0C2CB1A7AD00F6BF5A /* Exceptions for "counter" folder in "nyCounterUITests" target */,
 			);
 			path = counter;
-			sourceTree = "<group>";
-		};
-		0EDCC1C02CAEE6AC00D71CCD /* counterTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = counterTests;
-			sourceTree = "<group>";
-		};
-		0EDCC1CA2CAEE6AC00D71CCD /* counterUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = counterUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -98,8 +108,6 @@
 			isa = PBXGroup;
 			children = (
 				0EDCC1AB2CAEE6AA00D71CCD /* counter */,
-				0EDCC1C02CAEE6AC00D71CCD /* counterTests */,
-				0EDCC1CA2CAEE6AC00D71CCD /* counterUITests */,
 				0EDCC1AA2CAEE6AA00D71CCD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -155,9 +163,6 @@
 			dependencies = (
 				0EDCC1BF2CAEE6AC00D71CCD /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				0EDCC1C02CAEE6AC00D71CCD /* counterTests */,
-			);
 			name = nyCounterTests;
 			packageProductDependencies = (
 			);
@@ -177,9 +182,6 @@
 			);
 			dependencies = (
 				0EDCC1C92CAEE6AC00D71CCD /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				0EDCC1CA2CAEE6AC00D71CCD /* counterUITests */,
 			);
 			name = nyCounterUITests;
 			packageProductDependencies = (
@@ -306,7 +308,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"counter/Misc/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"counter/Misc/Assets/Preview Content\"";
 				DEVELOPMENT_TEAM = EU74F4WL9R;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -347,7 +349,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"counter/Misc/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"counter/Misc/Assets/Preview Content\"";
 				DEVELOPMENT_TEAM = EU74F4WL9R;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;

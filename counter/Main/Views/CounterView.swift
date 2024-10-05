@@ -126,10 +126,7 @@ struct NYCounterView: View {
                         Button(action: {
                             withAnimation {
                                 counter.value -= counter.step
-                                let item = NYCountItem(counter: counter, value: counter.value)
-                                counter.items?.append(item)
-                                modelContext.insertSave(item)
-                                modelContext.insertSave(counter)
+                                insertNewItem(counter)
                             }
                         }, label: {
                             Image(systemName: "minus.square")
@@ -143,10 +140,7 @@ struct NYCounterView: View {
                         Button(action: {
                             withAnimation {
                                 counter.value += counter.step
-                                let item = NYCountItem(counter: counter, value: counter.value)
-                                counter.items?.append(item)
-                                modelContext.insertSave(item)
-                                modelContext.insertSave(counter)
+                                insertNewItem(counter)
                             }
                         }, label: {
                             Image(systemName: "plus.square")
@@ -169,6 +163,11 @@ struct NYCounterView: View {
         .onChange(of: counter.step) {
             modelContext.insertSave(counter)
         }
+    }
+    
+    func insertNewItem(_ counter: NYCounter) {
+        NYCountItem(counter: counter, value: counter.value).insertSave(modelContext)
+        modelContext.insertSave(counter)
     }
 }
 
