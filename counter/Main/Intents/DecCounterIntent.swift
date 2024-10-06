@@ -1,3 +1,10 @@
+//
+//  IncrementCounter.swift
+//  nyCounter
+//
+//  Created by ny on 10/5/24.
+//
+
 import nybits
 import Foundation
 import SwiftData
@@ -5,7 +12,7 @@ import SwiftUI
 import AppIntents
 
 struct DecrementNYCounterIntent: AppIntent {
-    static let title: LocalizedStringResource = "Increment NYCounter by Title"
+    static let title: LocalizedStringResource = "Decrement NYCounter by Title"
 
     @Parameter(title: "Counter Title")
     var counterTitle: String
@@ -15,7 +22,7 @@ struct DecrementNYCounterIntent: AppIntent {
     }
 
     @MainActor
-    func perform(context: ModelContext) async throws -> some IntentResult & ReturnsValue<Int> {
+    func perform() async throws -> some IntentResult & ReturnsValue<Int> {
 
         let fetchDescriptor = FetchDescriptor<NYCounter>(
             predicate: #Predicate { $0.title == counterTitle }

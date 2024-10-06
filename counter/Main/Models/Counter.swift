@@ -8,6 +8,7 @@
 import nybits
 import nydefaults
 import Foundation
+import SwiftUI
 import SwiftData
 
 @Model
@@ -26,6 +27,17 @@ class NYCounter: Identifiable {
         self.title = title
         self.step = step
         self.items = items
+    }
+    
+    func increment() {
+        withAnimation {
+            value = value.addWithoutOverflow(step)
+        }
+    }
+    func decrement() {
+        withAnimation {
+            value = value.subtractWithoutOverflow(step)
+        }
     }
 }
 

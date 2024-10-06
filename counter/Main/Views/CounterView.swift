@@ -125,10 +125,8 @@ struct NYCounterView: View {
                     }
                     HStack {
                         Button(action: {
-                            withAnimation {
-                                counter.value = counter.value.subtractWithoutOverflow(counter.step)
-                                insertNewItem(counter)
-                            }
+                            counter.decrement()
+                            insertNewItem(counter)
                         }, label: {
                             Image(systemName: "minus.square")
 #if os(iOS)
@@ -139,10 +137,8 @@ struct NYCounterView: View {
                         Spacer()
                             .frame(width: 45)
                         Button(action: {
-                            withAnimation {
-                                counter.value = counter.value.addWithoutOverflow(counter.step)
-                                insertNewItem(counter)
-                            }
+                            counter.increment()
+                            insertNewItem(counter)
                         }, label: {
                             Image(systemName: "plus.square")
 #if os(iOS)
@@ -155,13 +151,7 @@ struct NYCounterView: View {
             }
         }
         .frame(width: 120)
-        .onChange(of: counter.goal) {
-            modelContext.insertSave(counter)
-        }
-        .onChange(of: counter.title) {
-            modelContext.insertSave(counter)
-        }
-        .onChange(of: counter.step) {
+        .onChange(of: counter) {
             modelContext.insertSave(counter)
         }
     }
