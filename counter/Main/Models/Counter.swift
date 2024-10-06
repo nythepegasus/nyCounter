@@ -14,14 +14,16 @@ import SwiftData
 @Model
 class NYCounter: Identifiable {
     var id: UUID = UUID()
+    var order: Int = -1
     var value: Int = 0
-    var goal: Int?
+    var goal: Int? = nil
     var title: String = "Counter"
     var step: Int = 1
     var items: [NYCountItem]? = []
     
-    init(id: UUID = UUID(), value: Int = 0, goal: Int? = nil, title: String = "Counter", step: Int = 1, items: [NYCountItem]? = []) {
+    init(id: UUID = UUID(), order: Int = 0, value: Int = 0, goal: Int? = nil, title: String = "Counter", step: Int = 1, items: [NYCountItem]? = []) {
         self.id = id
+        self.order = order
         self.value = value
         self.goal = goal
         self.title = title
@@ -31,12 +33,12 @@ class NYCounter: Identifiable {
     
     func increment() {
         withAnimation {
-            value = value.addWithoutOverflow(step)
+            value.addingWithoutOverflow(step)
         }
     }
     func decrement() {
         withAnimation {
-            value = value.subtractWithoutOverflow(step)
+            value.subtractingWithoutOverflow(step)
         }
     }
 }
@@ -61,8 +63,8 @@ extension PersistentModel {
         context.insert(self)
     }
     
-    func insertSave(_ context: ModelContext) {
-        context.insertSave(self)
+    func insertSave(_ context: ModelContext, _ errString: String? = nil) {
+        context.insertSave(self, errString)
     }
     
     func delete(_ context: ModelContext) {
@@ -71,12 +73,18 @@ extension PersistentModel {
 }
 
 extension ModelContext {
-    func insertSave<T>(_ model: T) where T: PersistentModel {
-        insert(model)
-        do {
-            try save()
-        } catch {
-            print("Error saving model: \(error.localizedDescription)")
+    func Save(_ errString: String? = nil) {
+        if hasChanges {
+            do {
+                try save()
+            } catch {
+                print(errString ?? "Error saving model: \(error.localizedDescription)")
+            }
         }
+    }
+    
+    func insertSave<T>(_ model: T, _ errString: String? = nil) where T: PersistentModel {
+        insert(model)
+        Save()
     }
 }

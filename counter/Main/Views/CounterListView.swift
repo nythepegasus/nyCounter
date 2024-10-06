@@ -5,15 +5,17 @@
 //  Created by ny on 10/3/24.
 //
 
+import nybits
+import nydefaults
 import SwiftUI
 import SwiftData
 
 
 struct CounterListView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: \NYCounter.id) private var counters: [NYCounter]
-    @Query private var allCountItems: [NYCountItem]
-    @State var curCounters: [NYCounter] = []
+    @Query(sort: \NYCounter.order) private var counters: [NYCounter]
+    @Query private var countItems: [NYCountItem]
+    @Environment(NYCounterModel.self) private var countModel
 #if os(iOS)
     @State var mode: EditMode = .inactive
     #else
@@ -97,43 +99,66 @@ struct CounterListView: View {
                 }
             }
         }
-        .onAppear(perform: cleanUpOrphanedCountItems)
+        .onAppear(perform: beginStuff)
+        
+    }
+    
+    func beginStuff() {
+        Task {
+            try await countModel.fetchCounters()
+            try await countModel.fetchCountItems()
+        }
+        cleanUpOrphanedCountItems()
+        numberCounters()
     }
     
     func addCounter() {
         withAnimation {
-            let newCounter = NYCounter(value: 0, title: "Counter", step: 1)
-            NYCountItem(counter: newCounter, value: 0).insertSave(modelContext)
-            newCounter.insertSave(modelContext)
+            let newCounter = NYCounter(order: countModel.highestOrder, value: 0, title: "Counter", step: 1)
+            NYCountItem(counter: newCounter, value: 0).insertSave(modelContext, "Error while inserting new counter item for \(newCounter.title)")
+            newCounter.insertSave(modelContext, "Error adding new counter \(newCounter.title)")
         }
     }
     
     private func deleteCounters(offsets: IndexSet) {
         withAnimation {
             for index in offsets {
-                let counter = counters[index]
-                
-                if let items = counter.items {
-                    items.forEach { modelContext.delete($0) }
+                if counters.indices.contains(index) {
+                    let counter = counters[index]
+                    if let items = counter.items {
+                        items.forEach { modelContext.delete($0) }
+                    }
+                    
+                    for item in countItems where item.counter == counter {
+                        modelContext.delete(item)
+                    }
+                    modelContext.delete(counter)
+
                 }
-                modelContext.delete(counter)
+                
             }
         }
-        try? modelContext.save()
+        modelContext.Save("Error while saving while deleting counters")
+    }
+    
+    func numberCounters() {
+        for counter in counters {
+            if counter.order < 0 {
+                counter.order = countModel.highestOrder
+                counter.insertSave(modelContext)
+            }
+        }
     }
     
     func cleanUpOrphanedCountItems() {
-        for item in allCountItems {
-            if item.counter == nil {
+        for item in countItems {
+            if item.counter.isNil ||
+//              counters.first(where: { $0 == item.counter }) == nil {
+                counters.first(where: { $0 == item.counter }).isNil {
                 modelContext.delete(item)
             }
         }
-        
-        do {
-            try modelContext.save()
-        } catch {
-            print("Failed to clean up orphaned NYCountItems: \(error.localizedDescription)")
-        }
+        modelContext.Save("Error saving while cleaning up orphaned count items")
     }
 }
 

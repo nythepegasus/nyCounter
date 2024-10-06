@@ -25,7 +25,7 @@ struct NYCounterView: View {
                 Button(action: {
                     withAnimation {
                         onDelete()
-                        try? modelContext.save()
+                        modelContext.Save("Error deleting \(counter.title).")
                     }
                 }, label: {
                     Image(systemName: "trash")
@@ -46,7 +46,7 @@ struct NYCounterView: View {
                 HStack {
                     Button(action: {
                         withAnimation {
-                            counter.step = counter.step.subtractWithoutOverflow(1)
+                            counter.step.subtractingWithoutOverflow(1)
                             modelContext.insertSave(counter)
                         }
                     }, label: {
@@ -60,7 +60,7 @@ struct NYCounterView: View {
                         .frame(width: 45)
                     Button(action: {
                         withAnimation {
-                            counter.step = counter.step.addWithoutOverflow(1)
+                            counter.step.addingWithoutOverflow(1)
                             modelContext.insertSave(counter)
                         }
                     }, label: {

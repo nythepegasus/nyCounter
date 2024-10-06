@@ -27,16 +27,17 @@ struct DecrementNYCounterIntent: AppIntent {
         let fetchDescriptor = FetchDescriptor<NYCounter>(
             predicate: #Predicate { $0.title == counterTitle }
         )
-        let o = container()
-
-        let counters = try o.mainContext.fetch(fetchDescriptor)
+        
+        let o = NYCounterModel.shared.container.mainContext
+        let counters = try o.fetch(fetchDescriptor)
         
         guard let counter = counters.first else {
             throw NSError(domain: "NYCounterNotFound", code: 404, userInfo: nil)
         }
  
         counter.decrement()
-        try o.mainContext.save()
+        
+        o.Save()
 
         return .result(value: counter.value)
     }
