@@ -50,8 +50,10 @@ struct CounterListView: View {
         #endif
     }
     
+    var rowMax: CGFloat { 278 }
+    
     var rowSize: CGFloat {
-        isEditing ? 240 : 120
+        isEditing ? rowMax : 120
     }
     
     var body: some View {
@@ -68,10 +70,9 @@ struct CounterListView: View {
                 })
                 .padding()
             }
-            Spacer()
             ScrollView(.horizontal) {
                 VStack {
-                    LazyHGrid(rows: [GridItem(.adaptive(minimum: rowSize))]) {
+                    LazyHGrid(rows: [GridItem(.adaptive(minimum: rowSize, maximum: rowMax))]) {
                         ForEach(counters) { counter in
                             NYCounterView(counter: counter, mode: $mode, onDelete: {
                                 if let offsets = counters.firstIndex(of: counter) {
