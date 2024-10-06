@@ -34,47 +34,50 @@ struct CounterListView: View {
         return Color.gray.opacity(0.2)
     }
     
+    var isEditing: Bool {
+        #if os(iOS)
+        mode == .active
+        #else
+        mode
+        #endif
+    }
+    
+    func toggleEditing() {
+        #if os(iOS)
+        mode = mode == .active ? .inactive : .active
+        #else
+        mode.toggle()
+        #endif
+    }
+    
+    var rowSize: CGFloat {
+        isEditing ? 240 : 120
+    }
+    
     var body: some View {
         VStack {
-            #if os(iOS)
             HStack {
                 Spacer()
+                Button(action: addCounter) {
+                    Image(systemName: "plus.circle")
+                }
                 Button(action: {
-                    if mode == .inactive {
-                        mode = .active
-                    } else if mode == .active {
-                        mode = .inactive
-                    }
+                    toggleEditing()
                 }, label: {
-                    Text(mode == .active ? "Done" : "Edit")
+                    Text(isEditing ? "Done" : "Edit")
                 })
                 .padding()
             }
-            #else
-            HStack {
-                Spacer()
-                Button(action: {
-                    mode.toggle()
-                }, label: {
-                    Text(mode ? "Done" : "Edit")
-                })
-                .padding()
-            }
-
-            #endif
+            Spacer()
             ScrollView(.horizontal) {
                 VStack {
-                    Spacer()
-                    HStack {
+                    LazyHGrid(rows: [GridItem(.adaptive(minimum: rowSize))]) {
                         ForEach(counters) { counter in
-                            NYCounterView(counter: counter, editMode: $mode, onDelete: {
+                            NYCounterView(counter: counter, mode: $mode, onDelete: {
                                 if let offsets = counters.firstIndex(of: counter) {
                                     deleteCounters(offsets: IndexSet(integer: offsets))
                                 }
                             })
-                                .onTapGesture {
-                                    print("tapped \(counter.id)")
-                                }
                                 .padding()
                                 .background(bColor(counter))
                                 .cornerRadius(15)
@@ -95,7 +98,6 @@ struct CounterListView: View {
                             }
                         }
                     }
-                    Spacer()
                 }
             }
         }

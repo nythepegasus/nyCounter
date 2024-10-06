@@ -13,16 +13,31 @@ struct NYCounterView: View {
     @Environment(\.modelContext) private var modelContext
     @State var counter: NYCounter
     #if os(iOS)
-    @Binding var editMode: EditMode
+    @Binding var mode: EditMode
     #else
-    @Binding var editMode: Bool
+    @Binding var mode: Bool
     #endif
     var onDelete: () -> Void = {}
+    
+    var isEditing: Bool {
+        #if os(iOS)
+        mode == .active
+        #else
+        mode
+        #endif
+    }
+    
+    func toggleEditing() {
+        #if os(iOS)
+        mode = mode == .active ? .inactive : .active
+        #else
+        mode.toggle()
+        #endif
+    }
     
     var stepEditor: some View {
         VStack(alignment: .center) {
             HStack {
-                Spacer()
                 Button(action: {
                     withAnimation {
                         onDelete()
@@ -35,14 +50,10 @@ struct NYCounterView: View {
             Divider()
             VStack(alignment: .center) {
                 TextField("Goal", value: $counter.goal, format: .number)
-#if os(iOS)
                     .keyboardType(.numberPad)
-#endif
                     .background(Color.accentColor.opacity(0.6))
                 TextField("Step Count", value: $counter.step, format: .number)
-#if os(iOS)
                     .keyboardType(.numberPad)
-#endif
                     .background(Color.accentColor.opacity(0.6))
                 HStack {
                     Button(action: {
@@ -79,50 +90,26 @@ struct NYCounterView: View {
     
     var body: some View {
         VStack(alignment: .center) {
-            #if os(iOS)
-            if editMode == .active {
+            if isEditing {
                 stepEditor
             }
-            #else
-            if editMode {
-                stepEditor
-            }
-#endif
             VStack {
-#if os(iOS)
-                if editMode == .active {
+                if isEditing {
                     TextField("Counter Title", text: $counter.title)
                         .background(Color.accentColor.opacity(0.6))
                 } else {
                     Text(counter.title)
                 }
-#else
-                if editMode {
-                    TextField("Counter Title", text: $counter.title)
-                        .background(Color.accentColor.opacity(0.6))
-                } else {
-                    Text(counter.title)
-                }
-#endif
                 VStack {
                     HStack {
-#if os(iOS)
-                        if editMode == .active {
+                        if isEditing {
                             TextField("Value", value: $counter.value, format: .number)
                                 .keyboardType(.numberPad)
-                                .background(Color.accentColor.opacity(0.6))
-                        } else {
-                            Text("\(counter.value)")
-                        }
-#else
-                        if editMode {
-                            TextField("Value", value: $counter.value, format: .number)
                                 .background(Color.accentColor.opacity(0.6))
 
                         } else {
                             Text("\(counter.value)")
                         }
-#endif
                     }
                     HStack {
                         Button(action: {
@@ -171,8 +158,8 @@ struct NYCounterView: View {
 
 #Preview {
     #if os(iOS)
-    NYCounterView(counter: NYCounter(title: "Woah!"), editMode: .constant(.inactive))
+    NYCounterView(counter: NYCounter(title: "Woah!"), mode: .constant(.inactive))
     #else
-    NYCounterView(counter: NYCounter(title: "Woah!"), editMode: .constant(false))
+    NYCounterView(counter: NYCounter(title: "Woah!"), mode: .constant(false))
     #endif
 }
