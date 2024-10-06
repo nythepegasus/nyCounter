@@ -5,10 +5,10 @@
 //  Created by ny on 10/3/24.
 //
 
-import nybits
-import nydefaults
 import SwiftUI
 import SwiftData
+
+import nysuibits
 
 
 struct CounterListView: View {

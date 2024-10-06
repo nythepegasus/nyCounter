@@ -5,11 +5,12 @@
 //  Created by ny on 10/3/24.
 //
 
-import nybits
-import nydefaults
 import Foundation
 import SwiftUI
 import SwiftData
+
+import nybits
+import nysuibits
 
 @Model
 class NYCounter: Identifiable {
@@ -55,36 +56,5 @@ class NYCountItem: Identifiable {
         self.counter = counter
         self.value = value
         self.time = time
-    }
-}
-
-extension PersistentModel {
-    func insert(_ context: ModelContext) {
-        context.insert(self)
-    }
-    
-    func insertSave(_ context: ModelContext, _ errString: String? = nil) {
-        context.insertSave(self, errString)
-    }
-    
-    func delete(_ context: ModelContext) {
-        context.delete(self)
-    }
-}
-
-extension ModelContext {
-    func Save(_ errString: String? = nil) {
-        if hasChanges {
-            do {
-                try save()
-            } catch {
-                print(errString ?? "Error saving model: \(error.localizedDescription)")
-            }
-        }
-    }
-    
-    func insertSave<T>(_ model: T, _ errString: String? = nil) where T: PersistentModel {
-        insert(model)
-        Save()
     }
 }

@@ -5,8 +5,9 @@
 //  Created by ny on 10/3/24.
 //
 
-import nybits
 import SwiftUI
+
+import nysuibits
 
 struct NYCounterView: View {
     @Environment(\.modelContext) private var modelContext
@@ -151,7 +152,13 @@ struct NYCounterView: View {
             }
         }
         .frame(width: 120)
-        .onChange(of: counter) {
+        .onChange([counter.step, counter.goal]) {
+            modelContext.insertSave(counter)
+        }
+        .onChange(of: counter.title) {
+            modelContext.insertSave(counter)
+        }
+        .onSubmit {
             modelContext.insertSave(counter)
         }
     }
