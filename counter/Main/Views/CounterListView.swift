@@ -43,17 +43,28 @@ struct CounterListView: View {
     }
     
     func toggleEditing() {
-        #if os(iOS)
-        mode = mode == .active ? .inactive : .active
-        #else
-        mode.toggle()
-        #endif
+        withAnimation {
+#if os(iOS)
+            mode = mode == .active ? .inactive : .active
+#else
+            mode.toggle()
+#endif
+        }
     }
     
     var rowMax: CGFloat { 278 }
     
     var rowSize: CGFloat {
         isEditing ? rowMax : 120
+    }
+    
+    var rows: [GridItem] {
+        #if os(iOS)
+        if isEditing {
+            return [GridItem(.adaptive(minimum: rowSize, maximum: .infinity))]
+        }
+        #endif
+        return [GridItem(.adaptive(minimum: rowSize, maximum: rowMax))]
     }
     
     var body: some View {
@@ -71,8 +82,9 @@ struct CounterListView: View {
                 .padding()
             }
             ScrollView(.horizontal) {
+                Spacer()
                 VStack {
-                    LazyHGrid(rows: [GridItem(.adaptive(minimum: rowSize, maximum: rowMax))]) {
+                    LazyHGrid(rows: rows) {
                         ForEach(counters) { counter in
                             NYCounterView(counter: counter, mode: $mode, onDelete: {
                                 if let offsets = counters.firstIndex(of: counter) {

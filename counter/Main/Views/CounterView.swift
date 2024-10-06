@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+import nybits
+import nydefaults
 import nysuibits
 
 struct NYCounterView: View {
@@ -17,6 +19,13 @@ struct NYCounterView: View {
     #else
     @Binding var mode: Bool
     #endif
+    
+    enum Field {
+        case title, value, step, goal
+    }
+    
+    @FocusState var isFocused: Field?
+    
     var onDelete: () -> Void = {}
     
     var isEditing: Bool {
@@ -28,11 +37,17 @@ struct NYCounterView: View {
     }
     
     func toggleEditing() {
-        #if os(iOS)
-        mode = mode == .active ? .inactive : .active
-        #else
-        mode.toggle()
-        #endif
+        withAnimation {
+#if os(iOS)
+            mode = mode == .active ? .inactive : .active
+#else
+            mode.toggle()
+#endif
+        }
+    }
+    
+    func tBGColor(_ field: Field) -> Color {
+        Color.accentColor.opacity(isFocused != field ? 0.6 : 0.9)
     }
     
     var stepEditor: some View {
@@ -50,15 +65,17 @@ struct NYCounterView: View {
             Divider()
             VStack(alignment: .center) {
                 TextField("Goal", value: $counter.goal, format: .number)
+                    .focused($isFocused, equals: .goal)
 #if os(iOS)
                     .keyboardType(.numberPad)
 #endif
-                    .background(Color.accentColor.opacity(0.6))
+                    .background(tBGColor(.goal))
                 TextField("Step Count", value: $counter.step, format: .number)
+                    .focused($isFocused, equals: .step)
 #if os(iOS)
                     .keyboardType(.numberPad)
 #endif
-                    .background(Color.accentColor.opacity(0.6))
+                    .background(tBGColor(.step))
                 HStack {
                     Button(action: {
                         withAnimation {
@@ -97,7 +114,8 @@ struct NYCounterView: View {
             VStack {
                 if isEditing {
                     TextField("Counter Title", text: $counter.title)
-                        .background(Color.accentColor.opacity(0.6))
+                        .focused($isFocused, equals: .title)
+                        .background(tBGColor(.title))
                 } else {
                     Text(counter.title)
                 }
@@ -105,10 +123,11 @@ struct NYCounterView: View {
                     HStack {
                         if isEditing {
                             TextField("Value", value: $counter.value, format: .number)
+                                .focused($isFocused, equals: .value)
+                                .background(tBGColor(.value))
 #if os(iOS)
                                 .keyboardType(.numberPad)
 #endif
-                                .background(Color.accentColor.opacity(0.6))
 
                         } else {
                             Text("\(counter.value)")
@@ -139,13 +158,8 @@ struct NYCounterView: View {
             }
         }
         .frame(width: 120)
-        .onChange([counter.step, counter.goal]) {
-            modelContext.insertSave(counter)
-        }
-        .onChange(of: counter.title) {
-            modelContext.insertSave(counter)
-        }
         .onSubmit {
+            isFocused = nil
             modelContext.insertSave(counter)
         }
     }
