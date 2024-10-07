@@ -69,6 +69,9 @@ class NYCounterModel: ObservableObject, @unchecked Sendable {
             self.countItems = []
         }
     }
+    func delete<T>(_ model: T) where T : PersistentModel {
+        container.mainContext.delete(model)
+    }
     
     var highestOrder: Int {
         Task {
