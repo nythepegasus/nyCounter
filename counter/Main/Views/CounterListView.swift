@@ -12,34 +12,41 @@ import nysuibits
 
 
 struct CounterListView: View {
+    @Environment(\.accessibilityShowButtonShapes)
+    private var accessibilityShowButtonShapes
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \NYCounter.order) private var counters: [NYCounter]
     @Query private var countItems: [NYCountItem]
     @Environment(NYCounterModel.self) private var countModel
 #if os(iOS)
     @State var mode: EditMode = .inactive
-    #else
+#else
     @State var mode: Bool = false
 #endif
     @State var refresh: Bool = false
+    @State var showSettings: Bool = false
+    
+    @AppStorage("vertical")
+    var vertical: Bool = false
     
     func bColor(_ c: NYCounter? = nil) -> Color {
-        if let c {
-            if let goal = c.goal {
-                if goal <= c.value {
-                    return Color.green.opacity(0.35)
-                }
-            }
+        if let c, let g = c.goal, g <= c.value {
+            Color.green.opacity(0.35)
+        } else {
+            Color.gray.opacity(0.2)
         }
-        return Color.gray.opacity(0.2)
+    }
+    
+    func nbColor() -> Color {
+        accessibilityShowButtonShapes ? Color.clear : bColor()
     }
     
     var isEditing: Bool {
-        #if os(iOS)
+#if os(iOS)
         mode == .active
-        #else
+#else
         mode
-        #endif
+#endif
     }
     
     func toggleEditing() {
@@ -59,63 +66,63 @@ struct CounterListView: View {
     }
     
     var rows: [GridItem] {
-        #if os(iOS)
-        if isEditing {
-            return [GridItem(.adaptive(minimum: rowSize, maximum: .infinity))]
+        if isEditing && UIDevice.current.userInterfaceIdiom == .phone {
+            [GridItem(.flexible(minimum: rowSize, maximum: .infinity))]
+        } else {
+            [GridItem(.adaptive(minimum: rowSize, maximum: rowMax))]
         }
-        #endif
-        return [GridItem(.adaptive(minimum: rowSize, maximum: rowMax))]
     }
     
     var body: some View {
         VStack {
             HStack {
                 Spacer()
+                Button(action: { showSettings.toggle() }) {
+                    Image(systemName: "gearshape")
+                }
                 Button(action: addCounter) {
                     Image(systemName: "plus.circle")
                 }
-                Button(action: {
-                    toggleEditing()
-                }, label: {
+                .padding(.trailing, 5)
+                Button(action: toggleEditing) {
                     Text(isEditing ? "Done" : "Edit")
-                })
-                .padding()
+                }
+                .padding(.trailing, 5)
             }
-            ScrollView(.horizontal) {
-                Spacer()
-                VStack {
-                    LazyHGrid(rows: rows) {
-                        ForEach(counters) { counter in
-                            NYCounterView(counter: counter, mode: $mode, onDelete: {
-                                if let offsets = counters.firstIndex(of: counter) {
-                                    deleteCounters(offsets: IndexSet(integer: offsets))
-                                }
-                            })
-                                .padding()
-                                .background(bColor(counter))
-                                .cornerRadius(15)
+            VOHView(items: rows) {
+                ForEach(counters) { counter in
+                    NYCounterView(counter: counter, mode: $mode, onDelete: {
+                        if let offsets = counters.firstIndex(of: counter) {
+                            deleteCounters(offsets: IndexSet(integer: offsets))
                         }
-                        .onDelete(perform: deleteCounters)
-                        HStack {
-                            Button(action: addCounter) {
-                                VStack {
-                                    Image(systemName: "plus.circle")
-                                        .font(.largeTitle)
-                                    Text("Add Counter")
-                                }
-                                .padding()
+                    })
+                    .padding()
+                    .background(bColor(counter))
+                    .cornerRadius(15)
+                }
+                .onDelete(perform: deleteCounters)
+                HStack {
+                    Button(action: addCounter) {
+                        VStack {
+                            Image(systemName: "plus.circle")
+                                .font(.largeTitle)
+                            Text("Add Counter")
+                        }
+                        .padding()
 #if os(iOS)
-                                .background(bColor())
-                                .cornerRadius(15)
+                        .background(nbColor())
+                        .cornerRadius(15)
 #endif
-                            }
-                        }
                     }
                 }
             }
         }
         .onAppear(perform: beginStuff)
-        
+        .sheet(isPresented: $showSettings, onDismiss: {
+            showSettings = false
+        }) {
+            NCSettingsView()
+        }
     }
     
     func beginStuff() {
@@ -148,9 +155,7 @@ struct CounterListView: View {
                         modelContext.delete(item)
                     }
                     modelContext.delete(counter)
-
                 }
-                
             }
         }
         modelContext.Save("Error while saving while deleting counters")

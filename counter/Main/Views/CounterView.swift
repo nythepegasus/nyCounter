@@ -85,7 +85,8 @@ struct NYCounterView: View {
                     }, label: {
                         Image(systemName: "minus.circle")
                             .resizable()
-                            .frame(width: 30, height: 30)
+                            .frame(minWidth: 10, maxWidth: 30, minHeight: 10, maxHeight: 30)
+                            .scaledToFit()
                     })
                     Spacer()
                         .frame(width: 45)
@@ -97,7 +98,8 @@ struct NYCounterView: View {
                     }, label: {
                         Image(systemName: "plus.circle")
                             .resizable()
-                            .frame(width: 40, height: 40)
+                            .frame(minWidth: 20, maxWidth: 40, minHeight: 20, maxHeight: 40)
+                            .scaledToFit()
                     })
                 }
                 .frame(minHeight: 45)
@@ -140,7 +142,8 @@ struct NYCounterView: View {
                         }, label: {
                             Image(systemName: "minus.square")
                                 .resizable()
-                                .frame(width: 30, height: 30)
+                                .frame(minWidth: 10, maxWidth: 30, minHeight: 10, maxHeight: 30)
+                                .scaledToFit()
                         })
                         Spacer()
                             .frame(width: 45)
@@ -150,14 +153,15 @@ struct NYCounterView: View {
                         }, label: {
                             Image(systemName: "plus.square")
                                 .resizable()
-                                .frame(width: 40, height: 40)
+                                .frame(minWidth: 20, maxWidth: 40, minHeight: 20, maxHeight: 40)
+                                .scaledToFit()
                         })
                     }
                     .frame(minHeight: 45)
                 }
             }
         }
-        .frame(width: 120)
+        .frame(maxWidth: 120)
         .onSubmit {
             isFocused = nil
             modelContext.insertSave(counter)
