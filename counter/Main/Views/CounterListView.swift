@@ -66,11 +66,14 @@ struct CounterListView: View {
     }
     
     var rows: [GridItem] {
+        #if os(iOS)
         if isEditing && UIDevice.current.userInterfaceIdiom == .phone {
-            [GridItem(.flexible(minimum: rowSize, maximum: .infinity))]
+            return [GridItem(.flexible(minimum: rowSize, maximum: .infinity))]
         } else {
-            [GridItem(.adaptive(minimum: rowSize, maximum: rowMax))]
+            return [GridItem(.adaptive(minimum: rowSize, maximum: rowMax))]
         }
+        #endif
+        return [GridItem(.adaptive(minimum: rowSize, maximum: rowMax))]
     }
     
     var body: some View {
