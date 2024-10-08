@@ -31,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E9ECE8A2CB57E2900A968A5 /* nyCounter.profdata */ = {isa = PBXFileReference; lastKnownFileType = file; path = nyCounter.profdata; sourceTree = "<group>"; };
 		0EDCC1A92CAEE6AA00D71CCD /* nyCounter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nyCounter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EDCC1BD2CAEE6AC00D71CCD /* nyCounterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nyCounterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EDCC1C72CAEE6AC00D71CCD /* nyCounterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nyCounterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,12 +118,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		0E9ECE8B2CB57E2900A968A5 /* OptimizationProfiles */ = {
+			isa = PBXGroup;
+			children = (
+				0E9ECE8A2CB57E2900A968A5 /* nyCounter.profdata */,
+			);
+			path = OptimizationProfiles;
+			sourceTree = "<group>";
+		};
 		0EDCC1A02CAEE6AA00D71CCD = {
 			isa = PBXGroup;
 			children = (
 				0EDCC1AB2CAEE6AA00D71CCD /* counter */,
 				0E562C862CB296BA00F6BF5A /* Frameworks */,
 				0EDCC1AA2CAEE6AA00D71CCD /* Products */,
+				0E9ECE8B2CB57E2900A968A5 /* OptimizationProfiles */,
 			);
 			sourceTree = "<group>";
 		};
