@@ -55,4 +55,5 @@ struct NCSettingsView: View {
 
 #Preview {
     NCSettingsView()
+        .environment(NYCounterModel())
 }
