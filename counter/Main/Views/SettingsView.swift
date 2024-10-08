@@ -8,6 +8,7 @@
 import SwiftUI
 import nybits
 import nysuibits
+import nybundle
 
 
 struct NCSettingsView: View {
@@ -47,6 +48,8 @@ struct NCSettingsView: View {
                 Text("This will delete all counters and their items.")
             }
         }
+        Spacer()
+        Text(verbatim: Bundle.main.infoDictionary?["CFBundleShortVersionString"] ??? String.self)
     }
 }
 
