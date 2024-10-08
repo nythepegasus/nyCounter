@@ -1,1 +1,3 @@
 *.xcuserdatad/
+OptimizationProfiles/
+Signing.xcconfig

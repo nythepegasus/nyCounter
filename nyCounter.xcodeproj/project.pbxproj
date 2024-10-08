@@ -55,6 +55,10 @@
 		0EDCC1F62CAEF1F600D71CCD /* Exceptions for "counter" folder in "nyCounter" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Misc/Assets/nyCounter.icns,
+				"Misc/Assets/Preview Content/Preview Assets.xcassets",
+				Misc/Config/Build.xcconfig,
+				Misc/Config/Sign.xcconfig.sample,
 				Misc/Info.plist,
 				Misc/Tests/counterTests/counterTests.swift,
 				Misc/Tests/counterUITests/counterUITests.swift,
@@ -319,6 +323,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_DEBUG_INFORMATION_LEVEL = default;
+				CLANG_TIDY_BUGPRONE_REDUNDANT_BRANCH_CONDITION = NO;
+				CLANG_TIDY_MISC_REDUNDANT_EXPRESSION = NO;
+				CLANG_USE_OPTIMIZATION_PROFILE = YES;
+				"CLANG_USE_OPTIMIZATION_PROFILE[sdk=iphonesimulator*]" = NO;
+				CLANG_WARN_COMPLETION_HANDLER_MISUSE = YES;
+				CLANG_WARN_IMPLICIT_FALLTHROUGH = YES;
 				CODE_SIGN_ENTITLEMENTS = counter/Misc/counter.entitlements;
 				"CODE_SIGN_ENTITLEMENTS[sdk=macosx*]" = "counter/Misc/counter-macOS.entitlements";
 				CODE_SIGN_IDENTITY = "$(CODE_SIGN_IDENTITY)";
@@ -334,6 +345,8 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				ENABLE_USER_SELECTED_FILES = "";
 				"ENABLE_USER_SELECTED_FILES[sdk=macosx*]" = readwrite;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_SHADOW = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = counter/Misc/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
@@ -350,6 +363,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LLVM_LTO = YES_THIN;
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
@@ -379,6 +393,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_DEBUG_INFORMATION_LEVEL = "line-tables-only";
+				"CLANG_DEBUG_INFORMATION_LEVEL[sdk=iphonesimulator*]" = default;
+				CLANG_TIDY_BUGPRONE_REDUNDANT_BRANCH_CONDITION = YES;
+				CLANG_TIDY_MISC_REDUNDANT_EXPRESSION = YES;
+				CLANG_USE_OPTIMIZATION_PROFILE = YES;
+				"CLANG_USE_OPTIMIZATION_PROFILE[sdk=iphonesimulator*]" = NO;
+				CLANG_WARN_COMPLETION_HANDLER_MISUSE = YES;
+				CLANG_WARN_IMPLICIT_FALLTHROUGH = YES;
 				CODE_SIGN_ENTITLEMENTS = counter/Misc/counter.entitlements;
 				"CODE_SIGN_ENTITLEMENTS[sdk=macosx*]" = "counter/Misc/counter-macOS.entitlements";
 				CODE_SIGN_IDENTITY = "$(CODE_SIGN_IDENTITY)";
@@ -394,6 +416,10 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				ENABLE_USER_SELECTED_FILES = "";
 				"ENABLE_USER_SELECTED_FILES[sdk=macosx*]" = readwrite;
+				GCC_OPTIMIZATION_LEVEL = z;
+				"GCC_OPTIMIZATION_LEVEL[sdk=iphonesimulator*]" = s;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_SHADOW = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = counter/Misc/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
@@ -410,6 +436,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LLVM_LTO = YES;
+				"LLVM_LTO[sdk=iphonesimulator*]" = NO;
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
@@ -669,8 +697,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/nythepegasus/nybits.git";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.6;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
