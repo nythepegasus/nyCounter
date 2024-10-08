@@ -156,7 +156,6 @@
 				0EDCC1A52CAEE6AA00D71CCD /* Sources */,
 				0EDCC1A62CAEE6AA00D71CCD /* Frameworks */,
 				0EDCC1A72CAEE6AA00D71CCD /* Resources */,
-				0E9ECE8C2CB5813D00A968A5 /* Dynamic Test Notes */,
 			);
 			buildRules = (
 			);
@@ -286,27 +285,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		0E9ECE8C2CB5813D00A968A5 /* Dynamic Test Notes */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Dynamic Test Notes";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/zsh;
-			shellScript = "#!/bin/zsh\n#  ci_post_xcodebuild.sh\n\nif [[ -d \"$CI_APP_STORE_SIGNED_APP_PATH\" ]]; then\n  TESTFLIGHT_DIR_PATH=../TestFlight\n  mkdir $TESTFLIGHT_DIR_PATH\n  git fetch --deepen 3 && git log -3 --pretty=format:\"%s\" >! $TESTFLIGHT_DIR_PATH/WhatToTest.en-US.txt\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0EDCC1A52CAEE6AA00D71CCD /* Sources */ = {
