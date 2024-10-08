@@ -72,8 +72,9 @@ struct CounterListView: View {
         } else {
             return [GridItem(.adaptive(minimum: rowSize, maximum: rowMax))]
         }
-        #endif
+        #else
         return [GridItem(.adaptive(minimum: rowSize, maximum: rowMax))]
+        #endif
     }
     
     var body: some View {
