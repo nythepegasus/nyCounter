@@ -15,21 +15,15 @@ struct GetNYCounterIntent: AppIntent {
     static let title: LocalizedStringResource = "Get NYCounter by Title"
 
     @Parameter(title: "Counter Title")
-    var counterTitle: String
+    var counter: NYCounterEntity
 
     static var parameterSummary: some ParameterSummary {
-        Summary("Get counter \(\.$counterTitle)")
+        Summary("Get counter \(\.$counter)")
     }
 
     @MainActor
     func perform() async throws -> some IntentResult & ReturnsValue<Int> {
-        let fetchDescriptor = FetchDescriptor<NYCounter>(
-            predicate: #Predicate { $0.title == counterTitle }
-        )
-        let o = NYCounterModel.shared.container.mainContext
-        let counters = try o.fetch(fetchDescriptor)
-        
-        guard let counter = counters.first else {
+        guard let counter = NYCounterModel.shared.counters.filter({ $0.id == counter.id }).first else {
             throw NSError(domain: "NYCounterNotFound", code: 404, userInfo: nil)
         }
 

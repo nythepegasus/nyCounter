@@ -11,17 +11,23 @@ import SwiftData
 import SwiftUI
 import AppIntents
 
-struct IncrementNYCounterIntent: AppIntent {
-    static let title: LocalizedStringResource = "Increment NYCounter by Title"
+struct SetNYCounterIntent: AppIntent {
+    static let title: LocalizedStringResource = "Set NYCounter by Title"
     
     @Dependency(key: "NYCounterModel")
     var model: NYCounterModel
-    
-    @Parameter(title: "Counter Title")
-    var counter: NYCounterEntity
 
+    @Parameter(title: "Counter")
+    var counter: NYCounterEntity
+    
+    @Parameter(title: "Counter Value")
+    var counterValue: Int
+    
+    @Parameter(title: "Return Old Value", default: false)
+    var returnOld: Bool
+    
     static var parameterSummary: some ParameterSummary {
-        Summary("Increment counter \(\.$counter)")
+        Summary("Set counter \(\.$counter) to \(\.$counterValue) and returns old \(\.$returnOld).")
     }
 
     @MainActor
@@ -30,9 +36,11 @@ struct IncrementNYCounterIntent: AppIntent {
             throw NSError(domain: "NYCounterNotFound", code: 404, userInfo: nil)
         }
 
-        counter.increment()
+        let value = returnOld ? counter.value : counterValue
+        
+        counter.set(value: counterValue)
         counter.insertSave(model.container.mainContext)
 
-        return .result(value: counter.value)
+        return .result(value: value)
     }
 }
