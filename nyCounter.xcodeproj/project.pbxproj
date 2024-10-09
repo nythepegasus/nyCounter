@@ -56,6 +56,10 @@
 		0EDCC1F62CAEF1F600D71CCD /* Exceptions for "counter" folder in "nyCounter" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Misc/Assets/nyCounter.icns,
+				"Misc/Assets/Preview Content/Preview Assets.xcassets",
+				Misc/Config/Build.xcconfig,
+				Misc/Config/Sign.xcconfig.sample,
 				Misc/Info.plist,
 				Misc/Tests/counterTests/counterTests.swift,
 				Misc/Tests/counterUITests/counterUITests.swift,
