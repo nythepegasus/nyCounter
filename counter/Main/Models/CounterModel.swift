@@ -52,10 +52,10 @@ class NYCounterModel: ObservableObject, Observable, @unchecked Sendable {
         
         // Initialize cancellables to listen to changes in Published properties
         self.ccancellable = $counterEntities.sink { _ in
-            counterApp.updateAppShortcutParameters()
+            counterAppShortcuts.updateAppShortcutParameters()
         }
         self.icancellable = self.$countItemEntities.sink { _ in
-            counterApp.updateAppShortcutParameters()
+            counterAppShortcuts.updateAppShortcutParameters()
         }
     }
     

@@ -8,14 +8,13 @@
 import SwiftUI
 import SwiftData
 import Observation
-import AppIntents
+@preconcurrency import AppIntents
 
 import nybits
 import nydefaults
 import nysuibits
 
-@main
-struct counterApp: App, @preconcurrency AppShortcutsProvider {
+struct counterAppShortcuts: AppShortcutsProvider {
     @AppShortcutsBuilder
     static var appShortcuts: [AppShortcut] {
         AppShortcut(
@@ -23,6 +22,7 @@ struct counterApp: App, @preconcurrency AppShortcutsProvider {
             phrases: [
                 "Set \(.applicationName)",
                 "Set \(\.$counter)",
+                "Set counter",
         ],
             shortTitle: "Set Counter",
             systemImageName: "equal")
@@ -31,6 +31,7 @@ struct counterApp: App, @preconcurrency AppShortcutsProvider {
             phrases: [
                 "Get \(.applicationName)",
                 "Get \(\.$counter)",
+                "Get counter",
         ],
             shortTitle: "Get Counter",
             systemImageName: "equal.circle")
@@ -38,7 +39,8 @@ struct counterApp: App, @preconcurrency AppShortcutsProvider {
             intent: IncrementNYCounterIntent(),
             phrases: [
                 "Increment \(.applicationName)",
-                "Increment \(\.$counter)"
+                "Increment \(\.$counter)",
+                "Increment counter",
         ],
             shortTitle: "Increment Counter",
             systemImageName: "plus.circle")
@@ -46,11 +48,16 @@ struct counterApp: App, @preconcurrency AppShortcutsProvider {
             intent: DecrementNYCounterIntent(),
             phrases: [
                 "Decrement \(.applicationName)",
-                "Decrement \(\.$counter)"
+                "Decrement \(\.$counter)",
+                "Decrement counter",
         ],
             shortTitle: "Decrement Counter",
             systemImageName: "minus.circle")
     }
+}
+
+@main
+struct counterApp: App {
 
     
     var countModel: NYCounterModel = .shared
@@ -58,7 +65,7 @@ struct counterApp: App, @preconcurrency AppShortcutsProvider {
     
     init() {
         depManager.shim3(key: "NYCounterModel", dependency: NYCounterModel.shared)
-        Self.updateAppShortcutParameters()
+        counterAppShortcuts.updateAppShortcutParameters()
     }
     
     var body: some Scene {
