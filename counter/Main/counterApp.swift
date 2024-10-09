@@ -15,12 +15,50 @@ import nydefaults
 import nysuibits
 
 @main
-struct counterApp: App {
+struct counterApp: App, @preconcurrency AppShortcutsProvider {
+    @AppShortcutsBuilder
+    static var appShortcuts: [AppShortcut] {
+        AppShortcut(
+            intent: SetNYCounterIntent(),
+            phrases: [
+                "Set \(.applicationName)",
+                "Set \(\.$counter)",
+        ],
+            shortTitle: "Set Counter",
+            systemImageName: "equal")
+        AppShortcut(
+            intent: GetNYCounterIntent(),
+            phrases: [
+                "Get \(.applicationName)",
+                "Get \(\.$counter)",
+        ],
+            shortTitle: "Get Counter",
+            systemImageName: "equal.circle")
+        AppShortcut(
+            intent: IncrementNYCounterIntent(),
+            phrases: [
+                "Increment \(.applicationName)",
+                "Increment \(\.$counter)"
+        ],
+            shortTitle: "Increment Counter",
+            systemImageName: "plus.circle")
+        AppShortcut(
+            intent: DecrementNYCounterIntent(),
+            phrases: [
+                "Decrement \(.applicationName)",
+                "Decrement \(\.$counter)"
+        ],
+            shortTitle: "Decrement Counter",
+            systemImageName: "minus.circle")
+    }
+
+    
     var countModel: NYCounterModel = .shared
     let depManager: AppIntents.AppDependencyManager = .shared
     
     init() {
         depManager.shim3(key: "NYCounterModel", dependency: NYCounterModel.shared)
+        Self.updateAppShortcutParameters()
     }
     
     var body: some Scene {

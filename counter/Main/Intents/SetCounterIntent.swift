@@ -27,7 +27,7 @@ struct SetNYCounterIntent: AppIntent {
     var returnOld: Bool
     
     static var parameterSummary: some ParameterSummary {
-        Summary("Set counter \(\.$counter) to \(\.$counterValue) and returns old \(\.$returnOld).")
+        Summary("Set \(\.$counter) to \(\.$counterValue) and returns old \(\.$returnOld).")
     }
 
     @MainActor
