@@ -18,7 +18,7 @@ struct GetNYCounterIntent: AppIntent {
     var counter: NYCounterEntity
 
     static var parameterSummary: some ParameterSummary {
-        Summary("Get counter \(\.$counter)")
+        Summary("Get \(\.$counter)'s value")
     }
 
     @MainActor
