@@ -49,7 +49,9 @@ struct NCSettingsView: View {
             }
         }
         Spacer()
-        Text(verbatim: Bundle.main.infoDictionary?["CFBundleShortVersionString"] ??? String.self)
+        Text(verbatim: Bundle.main.shortVersion)
+        Text(verbatim: Bundle.main.identifier)
+        Text(verbatim: Bundle.main.copyright)
     }
 }
 
