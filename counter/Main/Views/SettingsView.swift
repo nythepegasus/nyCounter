@@ -52,7 +52,6 @@ struct NCSettingsView: View {
                 }
                 
                 
-                #if DEBUG
                 Section {
                     NavigationLink("App Groups", destination: StringListView(title: "App Groups", strings: NYGroup.allCases.map { $0.name }))
                     NavigationLink("Resources", destination: StringListView(title: "Resources", strings: counterApp.listResources()))
@@ -61,7 +60,6 @@ struct NCSettingsView: View {
                     NavigationLink("SideStore Files", destination: StringListView(title: "SideStore Files", strings: counterApp.listFiles(.sidestore)))
                     NavigationLink("LongName Files", destination: StringListView(title: "LongName Files", strings: counterApp.listFiles(.longname)))
                 }
-                #endif
             }
             .navigationTitle("Settings")
         }
