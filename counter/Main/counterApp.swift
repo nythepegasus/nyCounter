@@ -87,6 +87,7 @@ struct counterApp: App {
         .modelContainer(countModel.container)
     }
     
+#if os(iOS)
     static func listResources() -> [String] {
         var frameworks: [String] = []
         if let bundle = Bundle.main.resourceURL {
@@ -117,16 +118,19 @@ struct counterApp: App {
         case .sidestore: return listFiles(path: path) + listFiles(path: path.appending(path: "Apps/")) + listFiles(path: path.appending(path: "Library/"))
         }
     }
+#endif
     
     @discardableResult
     func createTestFile() -> Bool {
         
+#if os(iOS)
         let na = NYGroup.ny
         let ss = NYGroup.sidestore
         let ln = NYGroup.longname
         print("CONTAINER: \(na.container~.path) - \(na.rawValue)")
         print("CONTAINER: \(ss.container~.path) - \(ss.rawValue)")
-        print("CONTAINER: \(ln.container~.path) - \(ln.rawValue)")
+    print("CONTAINER: \(ln.container~.path) - \(ln.rawValue)")
+#endif
         return true
     }
 }
