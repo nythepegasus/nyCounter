@@ -21,6 +21,14 @@ struct NCSettingsView: View {
     var showIConfirmation: Bool = false
     @State
     var showCConfirmation: Bool = false
+    
+#if DEBUG
+    @State
+    var showDebugSection: Bool = true
+#else
+    @State
+    var showDebugSection: Bool = false
+#endif
 
     var body: some View {
         NavigationView {
@@ -52,21 +60,38 @@ struct NCSettingsView: View {
                 }
                 
 #if os(iOS)
-                Section {
-                    NavigationLink("App Groups", destination: StringListView(title: "App Groups", strings: NYGroup.allCases.map { $0.name }))
-                    NavigationLink("Resources", destination: StringListView(title: "Resources", strings: counterApp.listResources()))
-                    NavigationLink("ny.apps Files", destination: StringListView(title: "ny Files", strings: counterApp.listFiles(.ny)))
-                    NavigationLink("SideStore Files", destination: StringListView(title: "SideStore Files", strings: counterApp.listFiles(.sidestore)))
-                    NavigationLink("LongName Files", destination: StringListView(title: "LongName Files", strings: counterApp.listFiles(.longname)))
+                if showDebugSection {
+                    Section {
+                    NavigationLink("App Group Files") {
+                        List(NYGroup.allCases.map { String($0.rawValue) }, id: \.self) { gr in
+                            NavigationLink(gr, destination: StringListView(title: "\(gr) files", strings: counterApp.listFiles(.init(rawValue: gr)!)))
+                        }
+                    }
+                    NavigationLink("Resources", destination: StringListView(title: "App Files", strings: counterApp.listResources()))
                 }
+            }
 #endif
             }
             .navigationTitle("Settings")
         }
+#if os(iOS)
         Spacer()
-        Text(verbatim: Bundle.main.shortVersion)
-        Text(verbatim: Bundle.main.identifier)
-        Text(verbatim: Bundle.main.copyright)
+                Group {
+                    if showDebugSection {
+                        Text(verbatim: "\(Bundle.main.displayName) - \(Bundle.main.identifier)")
+                            .monospaced()
+                        Text(verbatim: "\(Bundle.main.shortVersion) - \(Bundle.main.version)")
+                            .monospaced()
+                    } else {
+                        Text(verbatim: "\(Bundle.main.displayName) - \(Bundle.main.shortVersion)")
+                    }
+                    Text(verbatim: Bundle.main.copyright)
+                        .monospaced(showDebugSection)
+                }
+                .onTapGesture(count: 8) {
+                    showDebugSection.toggle()
+                }
+#endif
     }
 }
 

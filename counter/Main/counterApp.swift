@@ -111,7 +111,7 @@ struct counterApp: App {
                 } catch { print(error, fileURL) }
             }
         }
-        return files.map { $0.path() }
+        return files.map { $0.path() }.sorted()
     }
         
     static func listFiles(_ container: NYGroup) -> [String] {
