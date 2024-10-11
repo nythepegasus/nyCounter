@@ -56,6 +56,12 @@ struct counterAppShortcuts: AppShortcutsProvider {
     }
 }
 
+enum NYGroup: String, CaseIterable, AppGroupID {
+    case ny = "group.ny.apps"
+    case sidestore = "group.com.SideStore.SideStore"
+    case longname = "group.com.reallylongnameofanappthatdoesntexist.atallwowthisisareallylongname"
+}
+
 @main
 struct counterApp: App {
 
@@ -66,6 +72,8 @@ struct counterApp: App {
     init() {
         depManager.shim3(key: "NYCounterModel", dependency: NYCounterModel.shared)
         counterAppShortcuts.updateAppShortcutParameters()
+        
+        createTestFile()
     }
     
     var body: some Scene {
@@ -76,6 +84,18 @@ struct counterApp: App {
         .modelContainer(countModel.container)
     }
     
+
+    @discardableResult
+    func createTestFile() -> Bool {
+        
+        let na = NYGroup.ny
+        let ss = NYGroup.sidestore
+        let ln = NYGroup.longname
+        print("CONTAINER: \(na.container~.path) - \(na.rawValue)")
+        print("CONTAINER: \(ss.container~.path) - \(ss.rawValue)")
+        print("CONTAINER: \(ln.container~.path) - \(ln.rawValue)")
+        return true
+    }
 }
 
 private extension AppDependencyManager {

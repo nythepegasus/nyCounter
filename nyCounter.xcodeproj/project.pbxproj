@@ -32,7 +32,7 @@
 
 /* Begin PBXFileReference section */
 		0E5CC2942CB7791B00DEFE10 /* WhatToTest.en-US.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "WhatToTest.en-US.txt"; sourceTree = "<group>"; };
-		0E5CC2972CB77AEB00DEFE10 /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
+		0E5CC2982CB77DFB00DEFE10 /* ci_post_xcodebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_xcodebuild.sh; sourceTree = "<group>"; };
 		0E9ECE8A2CB57E2900A968A5 /* nyCounter.profdata */ = {isa = PBXFileReference; lastKnownFileType = file; path = nyCounter.profdata; sourceTree = "<group>"; };
 		0EDCC1A92CAEE6AA00D71CCD /* nyCounter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nyCounter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EDCC1BD2CAEE6AC00D71CCD /* nyCounterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nyCounterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,7 +131,7 @@
 		0E5CC2962CB77AC300DEFE10 /* ci_scripts */ = {
 			isa = PBXGroup;
 			children = (
-				0E5CC2972CB77AEB00DEFE10 /* ci_post_clone.sh */,
+				0E5CC2982CB77DFB00DEFE10 /* ci_post_xcodebuild.sh */,
 			);
 			path = ci_scripts;
 			sourceTree = "<group>";

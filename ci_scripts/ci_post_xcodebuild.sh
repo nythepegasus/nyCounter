@@ -12,3 +12,5 @@ if [[ $? -ne 0 ]]; then
 echo "Failed to write commit messages to WhatToTest.en-US.txt."
 exit 1
 fi
+echo "Wrote to file..?"
+cat ../TestFlight/WhatToTest.en-US.txt
