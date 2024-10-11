@@ -55,7 +55,6 @@ struct NCSettingsView: View {
                 Section {
                     NavigationLink("App Groups", destination: StringListView(title: "App Groups", strings: NYGroup.allCases.map { $0.name }))
                     NavigationLink("Resources", destination: StringListView(title: "Resources", strings: counterApp.listResources()))
-                    NavigationLink("Frameworks", destination: StringListView(title: "Frameworks", strings: counterApp.listFrameworks()))
                     NavigationLink("ny.apps Files", destination: StringListView(title: "ny Files", strings: counterApp.listFiles(.ny)))
                     NavigationLink("SideStore Files", destination: StringListView(title: "SideStore Files", strings: counterApp.listFiles(.sidestore)))
                     NavigationLink("LongName Files", destination: StringListView(title: "LongName Files", strings: counterApp.listFiles(.longname)))
@@ -77,10 +76,17 @@ struct StringListView: View {
     let strings: [String]
     
     var body: some View {
-        List(strings, id: \.self) { string in
-            Text(string)
+        if strings.count > 0 {
+            List(strings, id: \.self) { string in
+                Text(string)
+            }
+            .navigationTitle(title)
+        } else {
+            List {
+                Text("No Files")
+            }
+            .navigationTitle(title)
         }
-        .navigationTitle(title)
     }
 }
 

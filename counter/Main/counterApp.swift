@@ -97,26 +97,26 @@ struct counterApp: App {
         return frameworks
     }
     
-    static func listFrameworks() -> [String] {
-        var frameworks: [String] = []
-        if let bundle = Bundle.main.resourceURL {
-            frameworks = listFiles(path: bundle.appending(path: "Frameworks/"))
-        }
-        
-        return frameworks
-    }
-    
     static func listFiles(path: URL) -> [String] {
-        return (try? FileManager.default.contentsOfDirectory(at: path, includingPropertiesForKeys: nil).map { String($0.path) })~
+        guard path.isDirectory else { return [] }
+        var files = [URL]()
+        try? FileManager.default.contentsOfDirectory(at: path, includingPropertiesForKeys: nil).forEach { files.append($0) }
+        if let enumerator = FileManager.default.enumerator(at: path, includingPropertiesForKeys: [.isRegularFileKey], options: [.skipsHiddenFiles, .skipsPackageDescendants]) {
+            for case let fileURL as URL in enumerator {
+                do {
+                    let fileAttributes = try fileURL.resourceValues(forKeys:[.isRegularFileKey])
+                    if fileAttributes.isRegularFile! {
+                        files.append(fileURL)
+                    }
+                } catch { print(error, fileURL) }
+            }
+        }
+        return files.map { $0.path() }
     }
-    
+        
     static func listFiles(_ container: NYGroup) -> [String] {
         guard let path = container.container else { return [] }
-        switch container {
-        case .ny: return listFiles(path: path) + listFiles(path: path.appending(path: "Library/")) + listFiles(path: path.appending(path: "Library/Application Support"))
-        case .longname: return listFiles(path: path) + listFiles(path: path.appending(path: "Library/"))
-        case .sidestore: return listFiles(path: path) + listFiles(path: path.appending(path: "Apps/")) + listFiles(path: path.appending(path: "Library/"))
-        }
+        return listFiles(path: path)
     }
 #endif
     
@@ -129,7 +129,7 @@ struct counterApp: App {
         let ln = NYGroup.longname
         print("CONTAINER: \(na.container~.path) - \(na.rawValue)")
         print("CONTAINER: \(ss.container~.path) - \(ss.rawValue)")
-    print("CONTAINER: \(ln.container~.path) - \(ln.rawValue)")
+        print("CONTAINER: \(ln.container~.path) - \(ln.rawValue)")
 #endif
         return true
     }
