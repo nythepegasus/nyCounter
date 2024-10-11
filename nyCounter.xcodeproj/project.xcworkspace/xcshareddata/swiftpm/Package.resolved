@@ -1,6 +1,15 @@
 {
-  "originHash" : "cc427d11fa46dab611d64e370a4e49f3c8e59049d8808cead5946e29052a24f4",
+  "originHash" : "54b60f310466924ef7fccb49c527a4d3913baf3a88f05097e095e7353b012719",
   "pins" : [
+    {
+      "identity" : "imobiledevice.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SideStore/iMobileDevice.swift.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "975616212b28217dd1ba9d26f02297853a4aadc7"
+      }
+    },
     {
       "identity" : "nybits",
       "kind" : "remoteSourceControl",
@@ -8,6 +17,15 @@
       "state" : {
         "branch" : "main",
         "revision" : "33ba2ae4f5430580fb544d702398fecf8a34c45a"
+      }
+    },
+    {
+      "identity" : "openssl",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/krzyzanowskim/OpenSSL.git",
+      "state" : {
+        "revision" : "8cb1d641ab5ebce2cd7cf31c93baef07bed672d4",
+        "version" : "1.1.2301"
       }
     }
   ],

@@ -50,9 +50,18 @@ struct NCSettingsView: View {
                 } message: {
                     Text("This will delete all counters and their items.")
                 }
-
-                NavigationLink("App Groups", destination: StringListView(title: "App Groups", strings: NYGroup.allCases.map { $0.name }))
-
+                
+                
+                #if DEBUG
+                Section {
+                    NavigationLink("App Groups", destination: StringListView(title: "App Groups", strings: NYGroup.allCases.map { $0.name }))
+                    NavigationLink("Resources", destination: StringListView(title: "Resources", strings: counterApp.listResources()))
+                    NavigationLink("Frameworks", destination: StringListView(title: "Frameworks", strings: counterApp.listFrameworks()))
+                    NavigationLink("ny.apps Files", destination: StringListView(title: "ny Files", strings: counterApp.listFiles(.ny)))
+                    NavigationLink("SideStore Files", destination: StringListView(title: "SideStore Files", strings: counterApp.listFiles(.sidestore)))
+                    NavigationLink("LongName Files", destination: StringListView(title: "LongName Files", strings: counterApp.listFiles(.longname)))
+                }
+                #endif
             }
             .navigationTitle("Settings")
         }

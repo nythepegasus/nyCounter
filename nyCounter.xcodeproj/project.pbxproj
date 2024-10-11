@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0E562C882CB296BA00F6BF5A /* nysuibits in Frameworks */ = {isa = PBXBuildFile; productRef = 0E562C872CB296BA00F6BF5A /* nysuibits */; };
+		0EC7BF602CB912B30023F5A7 /* libimobiledevice in Frameworks */ = {isa = PBXBuildFile; productRef = 0EC7BF5F2CB912B30023F5A7 /* libimobiledevice */; };
+		0EC7BF622CB912B30023F5A7 /* libplist in Frameworks */ = {isa = PBXBuildFile; productRef = 0EC7BF612CB912B30023F5A7 /* libplist */; };
+		0EC7BF642CB912B30023F5A7 /* libusbmuxd in Frameworks */ = {isa = PBXBuildFile; productRef = 0EC7BF632CB912B30023F5A7 /* libusbmuxd */; };
 		0EDCC1FB2CAEF97400D71CCD /* nybits in Frameworks */ = {isa = PBXBuildFile; productRef = 0EDCC1FA2CAEF97400D71CCD /* nybits */; };
 		0EDCC1FD2CAEF97400D71CCD /* nybundle in Frameworks */ = {isa = PBXBuildFile; productRef = 0EDCC1FC2CAEF97400D71CCD /* nybundle */; };
 		0EDCC1FF2CAEF97400D71CCD /* nydefaults in Frameworks */ = {isa = PBXBuildFile; productRef = 0EDCC1FE2CAEF97400D71CCD /* nydefaults */; };
@@ -30,10 +33,25 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		0EC7BF542CB912480023F5A7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0E5CC2942CB7791B00DEFE10 /* WhatToTest.en-US.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "WhatToTest.en-US.txt"; sourceTree = "<group>"; };
 		0E5CC2982CB77DFB00DEFE10 /* ci_post_xcodebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_xcodebuild.sh; sourceTree = "<group>"; };
 		0E9ECE8A2CB57E2900A968A5 /* nyCounter.profdata */ = {isa = PBXFileReference; lastKnownFileType = file; path = nyCounter.profdata; sourceTree = "<group>"; };
+		0EC7BF5B2CB9128A0023F5A7 /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/lib/libcurl.tbd; sourceTree = DEVELOPER_DIR; };
+		0EC7BF5C2CB912960023F5A7 /* libcurl.4.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.4.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/lib/libcurl.4.tbd; sourceTree = DEVELOPER_DIR; };
 		0EDCC1A92CAEE6AA00D71CCD /* nyCounter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nyCounter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EDCC1BD2CAEE6AC00D71CCD /* nyCounterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nyCounterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EDCC1C72CAEE6AC00D71CCD /* nyCounterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nyCounterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,7 +108,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EDCC1FF2CAEF97400D71CCD /* nydefaults in Frameworks */,
+				0EC7BF642CB912B30023F5A7 /* libusbmuxd in Frameworks */,
 				0EDCC1FB2CAEF97400D71CCD /* nybits in Frameworks */,
+				0EC7BF622CB912B30023F5A7 /* libplist in Frameworks */,
+				0EC7BF602CB912B30023F5A7 /* libimobiledevice in Frameworks */,
 				0EDCC1FD2CAEF97400D71CCD /* nybundle in Frameworks */,
 				0E562C882CB296BA00F6BF5A /* nysuibits in Frameworks */,
 			);
@@ -116,6 +137,8 @@
 		0E562C862CB296BA00F6BF5A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0EC7BF5C2CB912960023F5A7 /* libcurl.4.tbd */,
+				0EC7BF5B2CB9128A0023F5A7 /* libcurl.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -176,6 +199,7 @@
 				0EDCC1A52CAEE6AA00D71CCD /* Sources */,
 				0EDCC1A62CAEE6AA00D71CCD /* Frameworks */,
 				0EDCC1A72CAEE6AA00D71CCD /* Resources */,
+				0EC7BF542CB912480023F5A7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -190,6 +214,9 @@
 				0EDCC1FC2CAEF97400D71CCD /* nybundle */,
 				0EDCC1FE2CAEF97400D71CCD /* nydefaults */,
 				0E562C872CB296BA00F6BF5A /* nysuibits */,
+				0EC7BF5F2CB912B30023F5A7 /* libimobiledevice */,
+				0EC7BF612CB912B30023F5A7 /* libplist */,
+				0EC7BF632CB912B30023F5A7 /* libusbmuxd */,
 			);
 			productName = counter;
 			productReference = 0EDCC1A92CAEE6AA00D71CCD /* nyCounter.app */;
@@ -269,6 +296,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				0EDCC1F92CAEF97400D71CCD /* XCRemoteSwiftPackageReference "nybits" */,
+				0EC7BF3E2CB912250023F5A7 /* XCRemoteSwiftPackageReference "iMobileDevice.swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0EDCC1AA2CAEE6AA00D71CCD /* Products */;
@@ -725,6 +753,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		0EC7BF3E2CB912250023F5A7 /* XCRemoteSwiftPackageReference "iMobileDevice.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SideStore/iMobileDevice.swift.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		0EDCC1F92CAEF97400D71CCD /* XCRemoteSwiftPackageReference "nybits" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/nythepegasus/nybits.git";
@@ -740,6 +776,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0EDCC1F92CAEF97400D71CCD /* XCRemoteSwiftPackageReference "nybits" */;
 			productName = nysuibits;
+		};
+		0EC7BF5F2CB912B30023F5A7 /* libimobiledevice */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0EC7BF3E2CB912250023F5A7 /* XCRemoteSwiftPackageReference "iMobileDevice.swift" */;
+			productName = libimobiledevice;
+		};
+		0EC7BF612CB912B30023F5A7 /* libplist */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0EC7BF3E2CB912250023F5A7 /* XCRemoteSwiftPackageReference "iMobileDevice.swift" */;
+			productName = libplist;
+		};
+		0EC7BF632CB912B30023F5A7 /* libusbmuxd */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0EC7BF3E2CB912250023F5A7 /* XCRemoteSwiftPackageReference "iMobileDevice.swift" */;
+			productName = libusbmuxd;
 		};
 		0EDCC1FA2CAEF97400D71CCD /* nybits */ = {
 			isa = XCSwiftPackageProductDependency;

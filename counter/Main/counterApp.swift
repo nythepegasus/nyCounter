@@ -14,6 +14,9 @@ import nybits
 import nydefaults
 import nysuibits
 
+import libusbmuxd
+import libplist
+
 struct counterAppShortcuts: AppShortcutsProvider {
     @AppShortcutsBuilder
     static var appShortcuts: [AppShortcut] {
@@ -84,7 +87,37 @@ struct counterApp: App {
         .modelContainer(countModel.container)
     }
     
-
+    static func listResources() -> [String] {
+        var frameworks: [String] = []
+        if let bundle = Bundle.main.resourceURL {
+            frameworks = listFiles(path: bundle)
+        }
+        
+        return frameworks
+    }
+    
+    static func listFrameworks() -> [String] {
+        var frameworks: [String] = []
+        if let bundle = Bundle.main.resourceURL {
+            frameworks = listFiles(path: bundle.appending(path: "Frameworks/"))
+        }
+        
+        return frameworks
+    }
+    
+    static func listFiles(path: URL) -> [String] {
+        return (try? FileManager.default.contentsOfDirectory(at: path, includingPropertiesForKeys: nil).map { String($0.path) })~
+    }
+    
+    static func listFiles(_ container: NYGroup) -> [String] {
+        guard let path = container.container else { return [] }
+        switch container {
+        case .ny: return listFiles(path: path) + listFiles(path: path.appending(path: "Library/")) + listFiles(path: path.appending(path: "Library/Application Support"))
+        case .longname: return listFiles(path: path) + listFiles(path: path.appending(path: "Library/"))
+        case .sidestore: return listFiles(path: path) + listFiles(path: path.appending(path: "Apps/")) + listFiles(path: path.appending(path: "Library/"))
+        }
+    }
+    
     @discardableResult
     func createTestFile() -> Bool {
         
