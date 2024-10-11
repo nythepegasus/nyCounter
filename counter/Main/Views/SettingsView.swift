@@ -89,7 +89,9 @@ struct NCSettingsView: View {
                         .monospaced(showDebugSection)
                 }
                 .onTapGesture(count: 8) {
-                    showDebugSection.toggle()
+                    withAnimation {
+                        showDebugSection.toggle()
+                    }
                 }
 #endif
     }
