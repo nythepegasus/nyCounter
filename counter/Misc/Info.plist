@@ -4,6 +4,20 @@
 <dict>
 	<key>CFBundleIconFile</key>
 	<string>nyCounter</string>
+	<key>INIntentsRestrictedWhileProtectedDataUnavailable</key>
+	<array>
+		<string>IncrementNYCounterIntent</string>
+		<string>DecrementNYCounterIntent</string>
+		<string>SetNYCounterIntent</string>
+		<string>GetNYCounterIntent</string>
+	</array>
+	<key>INIntentsSupported</key>
+	<array>
+		<string>IncrementNYCounterIntent</string>
+		<string>DecrementNYCounterIntent</string>
+		<string>GetNYCounterIntent</string>
+		<string>SetNYCounterIntent</string>
+	</array>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>UIBackgroundModes</key>

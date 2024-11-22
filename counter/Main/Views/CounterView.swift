@@ -7,9 +7,6 @@
 
 import SwiftUI
 
-import nybits
-import nydefaults
-import nysuibits
 
 struct NYCounterView: View {
     @Environment(\.modelContext) private var modelContext

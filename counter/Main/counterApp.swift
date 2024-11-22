@@ -5,17 +5,14 @@
 //  Created by ny on 10/3/24.
 //
 
+import Intents
 import SwiftUI
 import SwiftData
 import Observation
 @preconcurrency import AppIntents
 
-import nybits
-import nydefaults
-import nysuibits
-
-import libusbmuxd
-import libplist
+import Defaultable
+import DefaultableFoundation
 
 struct counterAppShortcuts: AppShortcutsProvider {
     @AppShortcutsBuilder
@@ -65,6 +62,22 @@ enum NYGroup: String, CaseIterable, AppGroupID {
     case longname = "group.com.reallylongnameofanappthatdoesntexist.atallwowthisisareallylongname"
 }
 
+#if !os(macOS)
+class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        print("Your code here")
+        
+        print(launchOptions)
+        return true
+    }
+    
+    func application(_ application: UIApplication, handlerFor intent: INIntent) {
+        print("BUH!!!!!!!!!")
+        
+    }
+}
+#endif
+
 @main
 struct counterApp: App {
 
@@ -77,6 +90,7 @@ struct counterApp: App {
         counterAppShortcuts.updateAppShortcutParameters()
         
         createTestFile()
+        getOSVersion()
     }
     
     var body: some Scene {
@@ -88,8 +102,8 @@ struct counterApp: App {
     }
     
 #if os(iOS)
-    static func listResources() -> [String] {
-        var frameworks: [String] = []
+    static func resourcesSet() -> Set<String> {
+        var frameworks: Set<String> = []
         if let bundle = Bundle.main.resourceURL {
             frameworks = listFiles(path: bundle)
         }
@@ -97,8 +111,11 @@ struct counterApp: App {
         return frameworks
     }
     
-    static func listFiles(path: URL) -> [String] {
+    static func listResources() -> [String] { Array(resourcesSet()).sorted() }
+    
+    static func listFiles(path: URL) -> Set<String> {
         guard path.isDirectory else { return [] }
+        var names: Set<String> = []
         var files = [URL]()
         try? FileManager.default.contentsOfDirectory(at: path, includingPropertiesForKeys: nil).forEach { files.append($0) }
         if let enumerator = FileManager.default.enumerator(at: path, includingPropertiesForKeys: [.isRegularFileKey], options: [.skipsHiddenFiles, .skipsPackageDescendants]) {
@@ -111,13 +128,16 @@ struct counterApp: App {
                 } catch { print(error, fileURL) }
             }
         }
-        return files.map { $0.path() }.sorted()
+        files.forEach { names.insert($0.path()) }
+        return names
     }
         
-    static func listFiles(_ container: NYGroup) -> [String] {
+    static func containerFileSet(_ container: NYGroup) -> Set<String> {
         guard let path = container.container else { return [] }
         return listFiles(path: path)
     }
+    
+    static func listFiles(_ container: NYGroup) -> [String] { Array(containerFileSet(container)).sorted() }
 #endif
     
     @discardableResult
@@ -133,12 +153,17 @@ struct counterApp: App {
 #endif
         return true
     }
+    
+    func getOSVersion() {
+        print(ProcessInfo().operatingSystemVersionString)
+        print(ProcessInfo().operatingSystemVersion)
+    }
 }
 
 private extension AppDependencyManager {
     
     // Shim using exact declaration as ``AppDependencyManager.add``
-    func shim1<Dependency>(key: AnyHashable? = nil, dependency provider: @escaping () -> Dependency) where Dependency : Sendable {
+    func shim1<Dependency>(key: AnyHashable? = nil, dependency provider: @escaping @Sendable () -> Dependency) where Dependency : Sendable {
         add(key: key, dependency: provider())
     }
     

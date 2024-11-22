@@ -10,9 +10,6 @@ import SwiftUI
 import SwiftData
 import AppIntents
 
-import nybits
-import nysuibits
-
 @Model
 final class NYCounter: @unchecked Sendable, Identifiable {
     var id: UUID = UUID()

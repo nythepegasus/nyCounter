@@ -6,9 +6,6 @@
 //
 
 import SwiftUI
-import nybits
-import nysuibits
-import nybundle
 
 
 struct NCSettingsView: View {
@@ -82,6 +79,8 @@ struct NCSettingsView: View {
                             .monospaced()
                         Text(verbatim: "\(Bundle.main.shortVersion) - \(Bundle.main.version)")
                             .monospaced()
+                        Text(verbatim: ProcessInfo().operatingSystemBuild)
+                            .monospaced()
                     } else {
                         Text(verbatim: "\(Bundle.main.displayName) - \(Bundle.main.shortVersion)")
                     }
@@ -94,6 +93,23 @@ struct NCSettingsView: View {
                     }
                 }
 #endif
+    }
+}
+
+extension ProcessInfo {
+    var operatingSystemBuild: String {
+        if let start = shortVersion.range(of: "(")?.upperBound,
+           let end = shortVersion.range(of: ")")?.lowerBound {
+            String(shortVersion[start..<end]).replacingOccurrences(of: "Build ", with: "")
+        } else {
+            "???"
+        }
+    }
+    
+    var shortVersion: String {
+        operatingSystemVersionString
+            .replacingOccurrences(of: "Version ", with: "")
+            .replacingOccurrences(of: "Build ", with: "")
     }
 }
 

@@ -10,9 +10,8 @@ import SwiftData
 import AppIntents
 import Combine
 
-import nybits
-import nydefaults
-import nysuibits
+import Defaultable
+import DefaultableFoundation
 
 @MainActor
 class NYCounterModel: ObservableObject, Observable, @unchecked Sendable {

@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import nybits
-import nysuibits
 
 
 struct VOHView<Content: View>: View {

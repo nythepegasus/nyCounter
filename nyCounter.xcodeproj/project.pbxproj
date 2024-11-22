@@ -7,13 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0E562C882CB296BA00F6BF5A /* nysuibits in Frameworks */ = {isa = PBXBuildFile; productRef = 0E562C872CB296BA00F6BF5A /* nysuibits */; };
-		0EC7BF602CB912B30023F5A7 /* libimobiledevice in Frameworks */ = {isa = PBXBuildFile; productRef = 0EC7BF5F2CB912B30023F5A7 /* libimobiledevice */; };
-		0EC7BF622CB912B30023F5A7 /* libplist in Frameworks */ = {isa = PBXBuildFile; productRef = 0EC7BF612CB912B30023F5A7 /* libplist */; };
-		0EC7BF642CB912B30023F5A7 /* libusbmuxd in Frameworks */ = {isa = PBXBuildFile; productRef = 0EC7BF632CB912B30023F5A7 /* libusbmuxd */; };
-		0EDCC1FB2CAEF97400D71CCD /* nybits in Frameworks */ = {isa = PBXBuildFile; productRef = 0EDCC1FA2CAEF97400D71CCD /* nybits */; };
-		0EDCC1FD2CAEF97400D71CCD /* nybundle in Frameworks */ = {isa = PBXBuildFile; productRef = 0EDCC1FC2CAEF97400D71CCD /* nybundle */; };
-		0EDCC1FF2CAEF97400D71CCD /* nydefaults in Frameworks */ = {isa = PBXBuildFile; productRef = 0EDCC1FE2CAEF97400D71CCD /* nydefaults */; };
+		0E1E9B3F2CF11B9C00F72F79 /* Defaultable in Frameworks */ = {isa = PBXBuildFile; productRef = 0E1E9B3E2CF11B9C00F72F79 /* Defaultable */; };
+		0E1E9B412CF11B9C00F72F79 /* DefaultableFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 0E1E9B402CF11B9C00F72F79 /* DefaultableFoundation */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,18 +53,27 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		0E562C0B2CB1A7AD00F6BF5A /* Exceptions for "counter" folder in "nyCounterTests" target */ = {
+		0E5DD3952CDC9909003FC3C3 /* Exceptions for "Tests" folder in "nyCounter" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Misc/Tests/counterTests/counterTests.swift,
+				counterTests/counterTests.swift,
+				counterUITests/counterUITests.swift,
+				counterUITests/counterUITestsLaunchTests.swift,
+			);
+			target = 0EDCC1A82CAEE6AA00D71CCD /* nyCounter */;
+		};
+		0E5DD3962CDC9909003FC3C3 /* Exceptions for "Tests" folder in "nyCounterTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				counterTests/counterTests.swift,
 			);
 			target = 0EDCC1BC2CAEE6AC00D71CCD /* nyCounterTests */;
 		};
-		0E562C0C2CB1A7AD00F6BF5A /* Exceptions for "counter" folder in "nyCounterUITests" target */ = {
+		0E5DD3972CDC9909003FC3C3 /* Exceptions for "Tests" folder in "nyCounterUITests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Misc/Tests/counterUITests/counterUITests.swift,
-				Misc/Tests/counterUITests/counterUITestsLaunchTests.swift,
+				counterUITests/counterUITests.swift,
+				counterUITests/counterUITestsLaunchTests.swift,
 			);
 			target = 0EDCC1C62CAEE6AC00D71CCD /* nyCounterUITests */;
 		};
@@ -81,21 +85,26 @@
 				Misc/Config/Build.xcconfig,
 				Misc/Config/Sign.xcconfig.sample,
 				Misc/Info.plist,
-				Misc/Tests/counterTests/counterTests.swift,
-				Misc/Tests/counterUITests/counterUITests.swift,
-				Misc/Tests/counterUITests/counterUITestsLaunchTests.swift,
 			);
 			target = 0EDCC1A82CAEE6AA00D71CCD /* nyCounter */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		0E5DD3912CDC9909003FC3C3 /* Tests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				0E5DD3952CDC9909003FC3C3 /* Exceptions for "Tests" folder in "nyCounter" target */,
+				0E5DD3962CDC9909003FC3C3 /* Exceptions for "Tests" folder in "nyCounterTests" target */,
+				0E5DD3972CDC9909003FC3C3 /* Exceptions for "Tests" folder in "nyCounterUITests" target */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
 		0EDCC1AB2CAEE6AA00D71CCD /* counter */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				0EDCC1F62CAEF1F600D71CCD /* Exceptions for "counter" folder in "nyCounter" target */,
-				0E562C0B2CB1A7AD00F6BF5A /* Exceptions for "counter" folder in "nyCounterTests" target */,
-				0E562C0C2CB1A7AD00F6BF5A /* Exceptions for "counter" folder in "nyCounterUITests" target */,
 			);
 			path = counter;
 			sourceTree = "<group>";
@@ -107,13 +116,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0EDCC1FF2CAEF97400D71CCD /* nydefaults in Frameworks */,
-				0EC7BF642CB912B30023F5A7 /* libusbmuxd in Frameworks */,
-				0EDCC1FB2CAEF97400D71CCD /* nybits in Frameworks */,
-				0EC7BF622CB912B30023F5A7 /* libplist in Frameworks */,
-				0EC7BF602CB912B30023F5A7 /* libimobiledevice in Frameworks */,
-				0EDCC1FD2CAEF97400D71CCD /* nybundle in Frameworks */,
-				0E562C882CB296BA00F6BF5A /* nysuibits in Frameworks */,
+				0E1E9B412CF11B9C00F72F79 /* DefaultableFoundation in Frameworks */,
+				0E1E9B3F2CF11B9C00F72F79 /* Defaultable in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,6 +177,7 @@
 				0E5CC2962CB77AC300DEFE10 /* ci_scripts */,
 				0E5CC2932CB7790D00DEFE10 /* TestFlight */,
 				0EDCC1AB2CAEE6AA00D71CCD /* counter */,
+				0E5DD3912CDC9909003FC3C3 /* Tests */,
 				0E562C862CB296BA00F6BF5A /* Frameworks */,
 				0EDCC1AA2CAEE6AA00D71CCD /* Products */,
 				0E9ECE8B2CB57E2900A968A5 /* OptimizationProfiles */,
@@ -206,17 +211,13 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				0E5DD3912CDC9909003FC3C3 /* Tests */,
 				0EDCC1AB2CAEE6AA00D71CCD /* counter */,
 			);
 			name = nyCounter;
 			packageProductDependencies = (
-				0EDCC1FA2CAEF97400D71CCD /* nybits */,
-				0EDCC1FC2CAEF97400D71CCD /* nybundle */,
-				0EDCC1FE2CAEF97400D71CCD /* nydefaults */,
-				0E562C872CB296BA00F6BF5A /* nysuibits */,
-				0EC7BF5F2CB912B30023F5A7 /* libimobiledevice */,
-				0EC7BF612CB912B30023F5A7 /* libplist */,
-				0EC7BF632CB912B30023F5A7 /* libusbmuxd */,
+				0E1E9B3E2CF11B9C00F72F79 /* Defaultable */,
+				0E1E9B402CF11B9C00F72F79 /* DefaultableFoundation */,
 			);
 			productName = counter;
 			productReference = 0EDCC1A92CAEE6AA00D71CCD /* nyCounter.app */;
@@ -295,8 +296,7 @@
 			mainGroup = 0EDCC1A02CAEE6AA00D71CCD;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				0EDCC1F92CAEF97400D71CCD /* XCRemoteSwiftPackageReference "nybits" */,
-				0EC7BF3E2CB912250023F5A7 /* XCRemoteSwiftPackageReference "iMobileDevice.swift" */,
+				0E1E9B3D2CF11B9C00F72F79 /* XCRemoteSwiftPackageReference "Defaultable" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0EDCC1AA2CAEE6AA00D71CCD /* Products */;
@@ -385,7 +385,10 @@
 				CLANG_TIDY_BUGPRONE_REDUNDANT_BRANCH_CONDITION = NO;
 				CLANG_TIDY_MISC_REDUNDANT_EXPRESSION = NO;
 				CLANG_USE_OPTIMIZATION_PROFILE = YES;
+				"CLANG_USE_OPTIMIZATION_PROFILE[sdk=appletvsimulator*]" = NO;
 				"CLANG_USE_OPTIMIZATION_PROFILE[sdk=iphonesimulator*]" = NO;
+				"CLANG_USE_OPTIMIZATION_PROFILE[sdk=watchsimulator*]" = NO;
+				"CLANG_USE_OPTIMIZATION_PROFILE[sdk=xrsimulator*]" = NO;
 				CLANG_WARN_COMPLETION_HANDLER_MISUSE = YES;
 				CLANG_WARN_IMPLICIT_FALLTHROUGH = YES;
 				CODE_SIGN_ENTITLEMENTS = counter/Misc/counter.entitlements;
@@ -407,9 +410,9 @@
 				GCC_WARN_SHADOW = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = counter/Misc/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
+				INFOPLIST_KEY_CFBundleDisplayName = nyCounter;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "2024 nythepegasus :3";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "©️ 2024 nythepegasus :3";
 				INFOPLIST_KEY_NSStickerSharingLevel = OS;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -423,6 +426,10 @@
 					"@executable_path/Frameworks",
 				);
 				LLVM_LTO = YES_THIN;
+				"LLVM_LTO[sdk=appletvsimulator*]" = NO;
+				"LLVM_LTO[sdk=iphonesimulator*]" = NO;
+				"LLVM_LTO[sdk=watchsimulator*]" = NO;
+				"LLVM_LTO[sdk=xrsimulator*]" = NO;
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
@@ -481,9 +488,9 @@
 				GCC_WARN_SHADOW = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = counter/Misc/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
+				INFOPLIST_KEY_CFBundleDisplayName = nyCounter;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "2024 nythepegasus :3";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "©️ 2024 nythepegasus :3";
 				INFOPLIST_KEY_NSStickerSharingLevel = OS;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -753,59 +760,26 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		0EC7BF3E2CB912250023F5A7 /* XCRemoteSwiftPackageReference "iMobileDevice.swift" */ = {
+		0E1E9B3D2CF11B9C00F72F79 /* XCRemoteSwiftPackageReference "Defaultable" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SideStore/iMobileDevice.swift.git";
+			repositoryURL = "https://github.com/nythepegasus/Defaultable";
 			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-		0EDCC1F92CAEF97400D71CCD /* XCRemoteSwiftPackageReference "nybits" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/nythepegasus/nybits.git";
-			requirement = {
-				branch = main;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		0E562C872CB296BA00F6BF5A /* nysuibits */ = {
+		0E1E9B3E2CF11B9C00F72F79 /* Defaultable */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 0EDCC1F92CAEF97400D71CCD /* XCRemoteSwiftPackageReference "nybits" */;
-			productName = nysuibits;
+			package = 0E1E9B3D2CF11B9C00F72F79 /* XCRemoteSwiftPackageReference "Defaultable" */;
+			productName = Defaultable;
 		};
-		0EC7BF5F2CB912B30023F5A7 /* libimobiledevice */ = {
+		0E1E9B402CF11B9C00F72F79 /* DefaultableFoundation */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 0EC7BF3E2CB912250023F5A7 /* XCRemoteSwiftPackageReference "iMobileDevice.swift" */;
-			productName = libimobiledevice;
-		};
-		0EC7BF612CB912B30023F5A7 /* libplist */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0EC7BF3E2CB912250023F5A7 /* XCRemoteSwiftPackageReference "iMobileDevice.swift" */;
-			productName = libplist;
-		};
-		0EC7BF632CB912B30023F5A7 /* libusbmuxd */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0EC7BF3E2CB912250023F5A7 /* XCRemoteSwiftPackageReference "iMobileDevice.swift" */;
-			productName = libusbmuxd;
-		};
-		0EDCC1FA2CAEF97400D71CCD /* nybits */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0EDCC1F92CAEF97400D71CCD /* XCRemoteSwiftPackageReference "nybits" */;
-			productName = nybits;
-		};
-		0EDCC1FC2CAEF97400D71CCD /* nybundle */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0EDCC1F92CAEF97400D71CCD /* XCRemoteSwiftPackageReference "nybits" */;
-			productName = nybundle;
-		};
-		0EDCC1FE2CAEF97400D71CCD /* nydefaults */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0EDCC1F92CAEF97400D71CCD /* XCRemoteSwiftPackageReference "nybits" */;
-			productName = nydefaults;
+			package = 0E1E9B3D2CF11B9C00F72F79 /* XCRemoteSwiftPackageReference "Defaultable" */;
+			productName = DefaultableFoundation;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

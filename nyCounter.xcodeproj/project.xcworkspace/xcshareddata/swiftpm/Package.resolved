@@ -1,31 +1,13 @@
 {
-  "originHash" : "e008dafb6abe1f6fe6b6daca4c70fe3a7e7e5b4bc8b381524e7b9d4b96defdd3",
+  "originHash" : "ecb988111d787d437f30cebc6a1d45ef723469df2f637801b59d9f193f9399c4",
   "pins" : [
     {
-      "identity" : "imobiledevice.swift",
+      "identity" : "defaultable",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/SideStore/iMobileDevice.swift.git",
+      "location" : "https://github.com/nythepegasus/Defaultable",
       "state" : {
-        "branch" : "main",
-        "revision" : "975616212b28217dd1ba9d26f02297853a4aadc7"
-      }
-    },
-    {
-      "identity" : "nybits",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/nythepegasus/nybits.git",
-      "state" : {
-        "branch" : "main",
-        "revision" : "33ba2ae4f5430580fb544d702398fecf8a34c45a"
-      }
-    },
-    {
-      "identity" : "openssl",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/krzyzanowskim/OpenSSL.git",
-      "state" : {
-        "revision" : "8cb1d641ab5ebce2cd7cf31c93baef07bed672d4",
-        "version" : "1.1.2301"
+        "revision" : "9f574c2f8ec1aae66f67d56c61edfb2f88b548c2",
+        "version" : "0.1.1"
       }
     }
   ],
